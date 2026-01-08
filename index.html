@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glam Genie - Beauty Services at Your Doorstep | Bangalore</title>
-    <meta name="description" content="Book trusted makeup artists in Bangalore. Bridal makeup, party makeup, hair styling & more. Premium beauty services at your home.">
+    <title>Glam Genie - Beauty Services at Your Doorstep | India</title>
+    <meta name="description" content="Book verified makeup artists across India. Premium beauty services at your home. Zero commission for artists!">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -13,194 +14,333 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #262626;
-            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SF Pro Display', sans-serif;
             overflow-x: hidden;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: white;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
+        /* Fixed Background Layers */
+        .fixed-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #1e1b4b 0%, #581c87 50%, #be185d 100%);
         }
 
-        /* Hero Full Screen Section */
-        .hero-fullscreen {
+        /* Starry Background Layer */
+        .stars-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Main Container - Adjusted for fixed bg */
+        .hero-container {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #fb7185 0%, #e11d48 50%, #be123c 100%);
-            position: relative;
             overflow: hidden;
-            padding: 40px 24px;
+            background: transparent;
         }
 
-        /* Animated Background Elements */
-        .floating-element {
+        .star {
             position: absolute;
-            font-size: 3rem;
-            opacity: 0.15;
-            animation: float 20s infinite ease-in-out;
+            background: white;
+            border-radius: 50%;
+            animation: subtleTwinkle var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+            box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes subtleTwinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.2);
+            }
+        }
+
+        /* Shooting Star */
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            width: 100px;
+            opacity: 0;
+            z-index: 1;
             pointer-events: none;
+            transform: rotate(-45deg);
+            animation: shoot 2s ease-out forwards;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0) rotate(-45deg) scale(0.5);
+                opacity: 0;
             }
-            25% {
-                transform: translateY(-30px) rotate(5deg);
+            10% {
+                opacity: 1;
+                transform: translate(-20px, 20px) rotate(-45deg) scale(1);
             }
-            50% {
-                transform: translateY(-60px) rotate(-5deg);
-            }
-            75% {
-                transform: translateY(-30px) rotate(3deg);
-            }
-        }
-
-        @keyframes floatReverse {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                transform: translateY(30px) rotate(-5deg);
-            }
-            50% {
-                transform: translateY(60px) rotate(5deg);
-            }
-            75% {
-                transform: translateY(30px) rotate(-3deg);
+            100% {
+                transform: translate(-300px, 300px) rotate(-45deg) scale(0.5);
+                opacity: 0;
             }
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .floating-element:nth-child(1) {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
-            animation-duration: 15s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 20%;
-            right: 15%;
-            animation-delay: 2s;
-            animation-duration: 18s;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 15%;
-            left: 15%;
-            animation-delay: 4s;
-            animation-duration: 22s;
-            animation-name: floatReverse;
-        }
-
-        .floating-element:nth-child(4) {
-            bottom: 25%;
-            right: 10%;
-            animation-delay: 1s;
-            animation-duration: 20s;
-        }
-
-        .floating-element:nth-child(5) {
-            top: 50%;
-            left: 5%;
-            animation-delay: 3s;
-            animation-duration: 17s;
-            animation-name: floatReverse;
-        }
-
-        .floating-element:nth-child(6) {
-            top: 60%;
-            right: 5%;
-            animation-delay: 5s;
-            animation-duration: 19s;
-        }
-
-        .floating-element:nth-child(7) {
-            top: 35%;
-            left: 25%;
-            animation-delay: 2.5s;
-            animation-duration: 21s;
-        }
-
-        .floating-element:nth-child(8) {
-            bottom: 40%;
-            right: 25%;
-            animation-delay: 4.5s;
-            animation-duration: 16s;
-            animation-name: floatReverse;
-        }
-
-        .floating-element:nth-child(9) {
-            top: 15%;
-            left: 50%;
-            animation-delay: 1.5s;
-            animation-duration: 23s;
-        }
-
-        .floating-element:nth-child(10) {
-            bottom: 20%;
-            left: 40%;
-            animation-delay: 3.5s;
-            animation-duration: 18s;
-            animation-name: floatReverse;
-        }
-
-        .sparkle {
+        /* Sparkle stars - larger and more prominent */
+        .star-sparkle {
             position: absolute;
-            animation: spin 3s linear infinite;
-            opacity: 0.2;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle var(--duration) ease-in-out infinite;
+            animation-delay: var(--delay);
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 10px rgba(168, 85, 247, 0.3);
         }
 
-        .hero-content {
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+                box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(168, 85, 247, 0.5);
+            }
+        }
+
+        /* Ambient Glow Pulse */
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.1); }
+        }
+
+        /* Subtle Ambient Glow */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.2;
+            z-index: 2;
+            pointer-events: none;
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        .glow-top-right {
+            top: -150px;
+            right: -150px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
+        }
+
+        .glow-bottom-left {
+            bottom: -150px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
+            animation-delay: 4s;
+        }
+        
+        /* NEW: Additional ambient glows for more depth */
+        .glow-center {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: 2;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(190, 24, 93, 0.35) 0%, transparent 70%);
+            animation: glowPulse 10s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        /* Content */
+        .content {
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 600px;
-            width: 100%;
+            max-width: 700px;
+            padding: 60px 24px;
             color: white;
         }
 
-        .hero-content h1 {
+        /* Top Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .badge-icon {
+            font-size: 0.9rem;
+        }
+
+        /* Logo Icon */
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-icon:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Heading */
+        .main-heading {
             font-size: 4rem;
             font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -2px;
-            animation: fadeInUp 0.8s ease-out;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            color: #ffffff;
         }
 
-        .hero-content .tagline {
+        /* Tagline */
+        .tagline {
             font-size: 1.5rem;
-            margin-bottom: 12px;
-            opacity: 0.95;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero-content .location {
-            font-size: 1.1rem;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 48px;
-            opacity: 0.9;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            font-weight: 400;
         }
 
-        @keyframes fadeInUp {
+        /* Email Form */
+        .email-form {
+            display: flex;
+            gap: 12px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 18px 24px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            font-size: 1rem;
+            color: #1f2937;
+            transition: all 0.3s ease;
+        }
+
+        .email-input::placeholder {
+            color: rgba(31, 41, 55, 0.5);
+        }
+
+        .email-input:focus {
+            outline: none;
+            background: #ffffff;
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 4px 24px rgba(168, 85, 247, 0.2);
+        }
+
+        .submit-btn {
+            padding: 18px 36px;
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Message */
+        .message {
+            display: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            margin-top: 24px;
+            font-size: 0.95rem;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .message.show {
+            display: block;
+        }
+
+        .message.success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #6ee7b7;
+            font-weight: 500;
+        }
+
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-8px);
             }
             to {
                 opacity: 1;
@@ -208,823 +348,1171 @@
             }
         }
 
-        .waitlist-box {
-            background: white;
-            padding: 48px 40px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
-        }
-
-        .waitlist-box h2 {
-            color: #262626;
-            font-size: 2rem;
-            margin-bottom: 12px;
-        }
-
-        .waitlist-box p {
-            color: #737373;
-            margin-bottom: 32px;
-            font-size: 1.1rem;
-        }
-
-        .waitlist-form {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .waitlist-form input {
-            padding: 18px 24px;
-            border: 2px solid #e5e5e5;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            transition: border-color 0.3s;
-        }
-
-        .waitlist-form input:focus {
-            outline: none;
-            border-color: #fb7185;
-        }
-
-        .waitlist-form button {
-            padding: 18px 32px;
-            background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .waitlist-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(225, 29, 72, 0.4);
-        }
-
-        .success-message {
-            display: none;
-            background: #10b981;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            margin-top: 16px;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeInUp 0.5s ease-out;
-        }
-
+        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 10;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-        .scroll-indicator a {
+            z-index: 11;
             color: white;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0.8;
-            transition: opacity 0.3s;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
         }
 
-        .scroll-indicator a:hover {
+        .scroll-indicator:hover {
             opacity: 1;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 16px 40px;
-            background: white;
-            color: #e11d48;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #e11d48;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: #fef2f2;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
+        .scroll-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 8px;
             text-align: center;
-            margin-bottom: 48px;
-            color: #262626;
         }
 
-        .features {
+        .scroll-arrow {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        /* Features Section */
+        .features-section {
+            position: relative;
+            padding: 120px 24px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 64px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            margin-top: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .feature-card {
-            background: white;
-            padding: 40px;
+            padding: 40px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .feature-card .icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 12px;
-            color: #262626;
+            color: #ffffff;
         }
 
-        .feature-card p {
-            color: #737373;
+        .feature-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Services Section */
-        .services {
-            padding: 80px 0;
-            background: white;
+        .services-section {
+            padding: 120px 24px;
+            background: transparent;
         }
 
-        .services h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 48px;
-            color: #262626;
-        }
-
-        .service-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
-        }
-
-        .service-item {
-            background: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
-            padding: 32px;
-            border-radius: 16px;
-            border: 2px solid #fecdd3;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(251, 113, 133, 0.2);
-        }
-
-        .service-item .icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-
-        .service-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: #262626;
-        }
-
-        .service-item .price {
-            color: #e11d48;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 0;
-            background: #fef2f2;
-        }
-
-        .pricing h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 16px;
-            color: #262626;
-        }
-
-        .pricing-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #737373;
-            margin-bottom: 48px;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 32px;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .pricing-card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: relative;
-            border: 2px solid #e5e5e5;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .service-card {
+            padding: 36px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .pricing-card:hover {
-            transform: translateY(-5px);
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .pricing-card.popular {
-            border-color: #f59e0b;
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
-        }
-
-        .pricing-card.popular::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #f59e0b;
-            color: white;
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            font-weight: 600;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.75rem;
+        .service-icon {
+            font-size: 2.5rem;
             margin-bottom: 16px;
-            color: #262626;
-        }
-
-        .pricing-card .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #e11d48;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .period {
-            color: #737373;
-            margin-bottom: 24px;
             display: block;
         }
 
-        .pricing-card ul {
-            list-style: none;
-            margin-bottom: 32px;
+        .service-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 600;
         }
 
-        .pricing-card ul li {
-            padding: 12px 0;
-            border-bottom: 1px solid #f5f5f5;
-            color: #525252;
+        .service-price {
+            color: #f472b6;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-shadow: 0 0 10px rgba(244, 114, 182, 0.3);
         }
 
-        .pricing-card ul li:last-child {
-            border-bottom: none;
+        /* Download Section */
+        .download-section {
+            padding: 120px 24px;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .pricing-card ul li::before {
-            content: '✓';
-            color: #10b981;
+        .download-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .download-title {
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-right: 12px;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .faq h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 48px;
-            color: #262626;
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: #fef2f2;
-            padding: 24px 32px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .faq-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(251, 113, 133, 0.1);
-        }
-
-        .faq-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: #262626;
-        }
-
-        .faq-item p {
-            color: #525252;
-            line-height: 1.7;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 0;
-            background: #fef2f2;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 48px;
-            color: #262626;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-item {
-            text-align: center;
-        }
-
-        .contact-item .icon {
-            font-size: 2.5rem;
+            color: white;
             margin-bottom: 16px;
         }
 
-        .contact-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: #262626;
+        .download-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 48px;
         }
 
-        .contact-item a {
-            color: #e11d48;
-            text-decoration: none;
-            font-weight: 500;
+        .coming-soon-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
         }
 
-        .contact-item a:hover {
-            text-decoration: underline;
+        .coming-soon-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .app-store-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            font-size: 1rem;
+            color: #1f2937;
+            cursor: not-allowed;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            min-width: 200px;
+        }
+
+        .app-store-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        }
+
+        .app-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .app-text {
+            text-align: left;
+        }
+
+        .app-text-small {
+            font-size: 0.75rem;
+            color: #6b7280;
+            display: block;
+        }
+
+        .app-text-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            display: block;
+        }
+
+        .notify-text {
+            margin-top: 32px;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Footer */
-        footer {
-            background: #262626;
-            color: white;
-            padding: 40px 0;
+        .footer {
+            padding: 60px 24px 40px;
             text-align: center;
+            background: transparent;
+            color: white;
+            position: relative;
         }
 
-        footer p {
-            opacity: 0.8;
+        /* Footer Navigation Links */
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Responsive */
+        .footer-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        .footer-nav-link:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-nav-separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .copyright {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-creator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-creator:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(236, 72, 153, 0.4);
+            transform: scale(1.03);
+        }
+
+        .footer-sparkle {
+            font-size: 1rem;
+        }
+
+        .footer-creator-name {
+            background: linear-gradient(135deg, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .footer-heart {
+            font-size: 1rem;
+            color: #ec4899;
+        }
+
+        .tagline-footer {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+            margin-top: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Page Navigation */
+        .page-container {
+            display: none;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        /* FAQ Page Styles */
+        .faq-page {
+            min-height: 100vh;
+            padding: 40px 24px 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .page-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #a78bfa, #ec4899, #fb7185);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.5);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .faq-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 48px;
+        }
+
+        .faq-category-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .faq-question-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+        }
+
+        .faq-question-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .faq-question.active .faq-question-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-question.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 24px 24px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Contact Page Styles */
+        .contact-page {
+            min-height: 100vh;
+            padding: 40px 24px 80px;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(236, 72, 153, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #f43f5e);
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.5);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(236, 72, 153, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .contact-info-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .contact-info-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-icon-text {
+            flex: 1;
+        }
+
+        .contact-icon-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-icon-value {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Privacy Page Styles */
+        .privacy-page {
+            min-height: 100vh;
+            padding: 40px 24px 80px;
+        }
+
+        .privacy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-intro {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 32px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .privacy-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .privacy-section-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .privacy-section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .privacy-section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            padding-top: 8px;
+        }
+
+        .privacy-subsection {
+            margin-bottom: 20px;
+        }
+
+        .privacy-subsection-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 8px;
+        }
+
+        .privacy-subsection-text {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .privacy-contact-box {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .privacy-contact-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-link {
+            color: #fbb6ce;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-link:hover {
+            color: #fda4af;
+        }
+
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content .tagline {
-                font-size: 1.25rem;
-            }
-
-            .waitlist-box {
-                padding: 32px 24px;
-            }
-
-            .waitlist-box h2 {
-                font-size: 1.5rem;
-            }
-
-            .about h2, .services h2, .pricing h2, .faq h2, .contact h2 {
+            .page-title {
                 font-size: 2rem;
             }
-
-            .pricing-card {
-                padding: 32px 24px;
-            }
-
-            .floating-element {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .waitlist-box {
-                padding: 24px 20px;
-            }
-
-            .floating-element {
-                font-size: 1.5rem;
+            
+            .page-subtitle {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Full Screen Hero with Waitlist -->
-    <section class="hero-fullscreen">
-        <!-- Animated Background Elements -->
-        <div class="floating-element">💄</div>
-        <div class="floating-element">💅</div>
-        <div class="floating-element">💋</div>
-        <div class="floating-element">✨</div>
-        <div class="floating-element">👄</div>
-        <div class="floating-element">🌸</div>
-        <div class="floating-element sparkle">⭐</div>
-        <div class="floating-element">🎀</div>
-        <div class="floating-element sparkle">✨</div>
-        <div class="floating-element">💐</div>
+    <!-- Fixed Background for Starry Effect throughout -->
+    <div class="fixed-background">
+        <div class="stars-layer" id="starsLayer"></div>
+        <!-- Ambient Glows -->
+        <div class="ambient-glow glow-top-right"></div>
+        <div class="ambient-glow glow-bottom-left"></div>
+        <div class="ambient-glow glow-center"></div>
+    </div>
 
-        <div class="hero-content">
-            <h1>✨ Glam Genie</h1>
-            <p class="tagline">Beauty Services at Your Doorstep</p>
-            <p class="location">📍 Now Live in Bangalore, India</p>
-
-            <div class="waitlist-box">
-                <h2>Join Our Waitlist</h2>
-                <p>Be the first to experience premium beauty services at home</p>
-
-                <form class="waitlist-form" id="waitlistForm" onsubmit="return handleWaitlistSubmit(event)">
-                    <input 
-                        type="email" 
-                        id="emailInput"
-                        placeholder="Enter your email address" 
-                        required
-                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                    >
-                    <button type="submit">Join Waitlist</button>
-                </form>
-
-                <div class="success-message" id="successMessage">
-                    ✓ Thank you! You've been added to our waitlist. We'll notify you when we launch.
-                </div>
+    <!-- Hero Section -->
+    <section class="hero-container">
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Top Badge -->
+            <div class="badge">
+                <span class="badge-icon">✨</span>
+                <span>Glam Genie ✦ Beauty Marketplace</span>
             </div>
+
+            <!-- Logo Icon -->
+            <div class="logo-icon">✨</div>
+
+            <!-- Main Heading -->
+            <h1 class="main-heading">
+                Glam Genie
+            </h1>
+
+            <!-- Tagline -->
+            <p class="tagline">
+                Book your glow, on the go!
+            </p>
+
+            <!-- Email Form -->
+            <form class="email-form" id="emailForm">
+                <input 
+                    type="email" 
+                    class="email-input" 
+                    id="emailInput"
+                    placeholder="Enter your email address"
+                    required
+                >
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Join Waitlist
+                </button>
+            </form>
+
+            <!-- Message -->
+            <div class="message" id="message"></div>
         </div>
 
+        <!-- Scroll Indicator -->
         <div class="scroll-indicator">
-            <a href="#about">
-                <span style="font-size: 0.9rem;">Scroll to explore</span>
-                <span style="font-size: 1.5rem;">↓</span>
-            </a>
+            <div class="scroll-text">Scroll to explore</div>
+            <div class="scroll-arrow">↓</div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2>Why Glam Genie?</h2>
-            <p style="text-align: center; max-width: 700px; margin: 0 auto 48px; font-size: 1.1rem; color: #525252;">
-                Glam Genie connects you with verified, professional makeup artists in Bangalore. 
-                Book trusted beauty services from the comfort of your home.
-            </p>
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Why Glam Genie?</h2>
+        <p class="section-subtitle">
+            India's first zero-commission beauty marketplace connecting users with verified professional makeup artists
+        </p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🏠</span>
+                <h3 class="feature-title">Doorstep Service</h3>
+                <p class="feature-desc">Professional makeup artists come to you across India. No salon visits, just pure convenience.</p>
+            </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="icon">🏠</div>
-                    <h3>At-Home Service</h3>
-                    <p>Professional makeup artists come to your doorstep. No need to travel to salons.</p>
-                </div>
+            <div class="feature-card">
+                <span class="feature-icon">📸</span>
+                <h3 class="feature-title">Artist Portfolios</h3>
+                <p class="feature-desc">Browse stunning portfolios, view previous work, and book directly from artist profiles.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="icon">⭐</div>
-                    <h3>Verified Artists</h3>
-                    <p>All artists are background-verified with proven portfolios and real client reviews.</p>
-                </div>
+            <div class="feature-card">
+                <span class="feature-icon">💰</span>
+                <h3 class="feature-title">Artists Keep 100%</h3>
+                <p class="feature-desc">Zero commission model. Artists keep every rupee earned. Simple subscriptions for unlimited bookings.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="icon">💰</div>
-                    <h3>Transparent Pricing</h3>
-                    <p>Clear, upfront pricing with no hidden charges. Pay only for what you book.</p>
-                </div>
+            <div class="feature-card">
+                <span class="feature-icon">⭐</span>
+                <h3 class="feature-title">Verified Artists</h3>
+                <p class="feature-desc">All artists are background-verified with proven portfolios and real client reviews.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="icon">📅</div>
-                    <h3>Flexible Booking</h3>
-                    <p>Book instantly or schedule in advance. Choose your preferred date and time.</p>
-                </div>
+            <div class="feature-card">
+                <span class="feature-icon">🎯</span>
+                <h3 class="feature-title">Points & Rewards</h3>
+                <p class="feature-desc">Earn points for bookings, referrals, and reviews. Redeem for discounts and ad removal.</p>
+            </div>
 
-                <div class="feature-card">
-                    <div class="icon">🔒</div>
-                    <h3>Safe & Secure</h3>
-                    <p>100% secure payments and ID-verified artists for your peace of mind.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="icon">💬</div>
-                    <h3>24/7 Support</h3>
-                    <p>Our customer support team is always available to help you.</p>
-                </div>
+            <div class="feature-card">
+                <span class="feature-icon">🛡️</span>
+                <h3 class="feature-title">Safety First</h3>
+                <p class="feature-desc">Zero tolerance policy with pre/post checklists, instant reporting, and strict verification.</p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2>Our Services</h2>
+    <section class="services-section">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">
+            Premium beauty services from bridal makeup to party looks
+        </p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">💄</span>
+                <h3 class="service-title">Bridal Makeup</h3>
+                <p class="service-price">Starting from ₹8,000</p>
+            </div>
 
-            <div class="service-grid">
-                <div class="service-item">
-                    <div class="icon">💄</div>
-                    <h3>Bridal Makeup</h3>
-                    <p class="price">Starting from ₹8,000</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">✨</span>
+                <h3 class="service-title">Party Makeup</h3>
+                <p class="service-price">Starting from ₹2,500</p>
+            </div>
 
-                <div class="service-item">
-                    <div class="icon">✨</div>
-                    <h3>Party Makeup</h3>
-                    <p class="price">Starting from ₹2,500</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">💇‍♀️</span>
+                <h3 class="service-title">Hair Styling</h3>
+                <p class="service-price">Starting from ₹1,500</p>
+            </div>
 
-                <div class="service-item">
-                    <div class="icon">💇‍♀️</div>
-                    <h3>Hair Styling</h3>
-                    <p class="price">Starting from ₹1,500</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">🎨</span>
+                <h3 class="service-title">Mehendi Design</h3>
+                <p class="service-price">Starting from ₹999</p>
+            </div>
 
-                <div class="service-item">
-                    <div class="icon">👗</div>
-                    <h3>Saree Draping</h3>
-                    <p class="price">Starting from ₹1,000</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">🥻</span>
+                <h3 class="service-title">Saree Draping</h3>
+                <p class="service-price">Starting from ₹1,000</p>
+            </div>
 
-                <div class="service-item">
-                    <div class="icon">📸</div>
-                    <h3>Photoshoot Makeup</h3>
-                    <p class="price">Starting from ₹3,500</p>
-                </div>
-
-                <div class="service-item">
-                    <div class="icon">🎨</div>
-                    <h3>Custom Services</h3>
-                    <p class="price">Contact for pricing</p>
-                </div>
+            <div class="service-card">
+                <span class="service-icon">📸</span>
+                <h3 class="service-title">Photoshoot Makeup</h3>
+                <p class="service-price">Starting from ₹3,500</p>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section (Artist Packages) -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2>Artist Subscription Plans</h2>
-            <p class="pricing-subtitle">Join Glam Genie as a professional makeup artist and grow your business</p>
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="download-content">
+            <h2 class="download-title">Get Glam Genie</h2>
+            <p class="download-subtitle">Experience the ultimate beauty marketplace on your mobile</p>
 
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Basic Package</h3>
-                    <div class="price">₹1,200</div>
-                    <span class="period">per hour</span>
-                    <ul>
-                        <li>Up to 5 service listings</li>
-                        <li>Basic portfolio (3 images)</li>
-                        <li>Email support</li>
-                        <li>Standard visibility</li>
-                        <li>Payment processing</li>
-                    </ul>
-                    <a href="#hero" class="btn" style="width: 100%; text-align: center; display: block;">Get Started</a>
+            <div class="coming-soon-badge">
+                <span>Coming Soon</span>
+            </div>
+
+            <div class="download-buttons">
+                <div class="app-store-btn">
+                    <svg class="app-icon" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.3-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    <div class="app-text">
+                        <span class="app-text-large">Download on App Store</span>
+                        <span class="app-text-small">iOS</span>
+                    </div>
                 </div>
 
-                <div class="pricing-card popular">
-                    <h3>Professional Package</h3>
-                    <div class="price">₹2,300</div>
-                    <span class="period">per hour</span>
-                    <ul>
-                        <li>Unlimited service listings</li>
-                        <li>Enhanced portfolio (15 images)</li>
-                        <li>Priority support</li>
-                        <li>Featured artist badge</li>
-                        <li>Advanced booking management</li>
-                        <li>Analytics dashboard</li>
-                    </ul>
-                    <a href="#hero" class="btn" style="width: 100%; text-align: center; display: block;">Get Started</a>
-                </div>
-
-                <div class="pricing-card">
-                    <h3>Premium Package</h3>
-                    <div class="price">₹3,900</div>
-                    <span class="period">per hour</span>
-                    <ul>
-                        <li>Everything in Professional</li>
-                        <li>Top search placement</li>
-                        <li>Dedicated account manager</li>
-                        <li>Custom branding options</li>
-                        <li>Marketing support</li>
-                        <li>Zero commission on first 10 bookings</li>
-                    </ul>
-                    <a href="#hero" class="btn" style="width: 100%; text-align: center; display: block;">Get Started</a>
+                <div class="app-store-btn">
+                    <svg class="app-icon" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3-60.1-60.1L104.6 499z"/></svg>
+                    <div class="app-text">
+                        <span class="app-text-large">Download on Google Play</span>
+                        <span class="app-text-small">Android</span>
+                    </div>
                 </div>
             </div>
 
-            <p style="text-align: center; margin-top: 48px; color: #737373;">
-                All plans include secure payment processing and customer support.<br>
-                Prices shown are approximate conversions: $15/hr ≈ ₹1,200 | $29/hr ≈ ₹2,300 | $49/hr ≈ ₹3,900
-            </p>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-container">
-                <div class="faq-item">
-                    <h3>How does Glam Genie work?</h3>
-                    <p>Simply browse our verified makeup artists, view their portfolios and reviews, select a service, pick your preferred date and time, and book. The artist will arrive at your doorstep at the scheduled time.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Are the artists verified?</h3>
-                    <p>Yes! All artists on Glam Genie go through a strict verification process including ID verification, portfolio review, and background checks. We also collect real client reviews to maintain quality.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>What areas do you serve?</h3>
-                    <p>We are currently live in Bangalore, India. We're expanding to other major cities soon. Join our waitlist to be notified when we launch in your city.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>How much does it cost?</h3>
-                    <p>Pricing varies by service and artist experience. Party makeup starts from ₹2,500, bridal makeup from ₹8,000, and hair styling from ₹1,500. All prices are transparent with no hidden charges.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Can I cancel or reschedule?</h3>
-                    <p>Yes, you can reschedule or cancel bookings up to 24 hours before the scheduled time for a full refund. Check our cancellation policy for complete details.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>How do I become an artist on Glam Genie?</h3>
-                    <p>Download the Glam Genie Artist App, complete your profile with portfolio images and ID verification, set your services and pricing, and start receiving booking requests!</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>What payment methods do you accept?</h3>
-                    <p>We accept all major payment methods including credit/debit cards, UPI, net banking, and digital wallets. All transactions are 100% secure.</p>
-                </div>
-
-                <div class="faq-item">
-                    <h3>Do artists bring their own supplies?</h3>
-                    <p>Yes, professional artists bring their own high-quality makeup products and tools. If you have specific product preferences or allergies, you can communicate this during booking.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="mailto:hello@glamgenie.in">hello@glamgenie.in</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon">📞</div>
-                    <h3>Phone</h3>
-                    <a href="tel:+918012345678">+91 80 1234 5678</a>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon">📍</div>
-                    <h3>Location</h3>
-                    <p>Bangalore, Karnataka, India</p>
-                </div>
-            </div>
+            <p class="notify-text">Notify me when it's available</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Glam Genie. All rights reserved.</p>
-            <p style="margin-top: 8px; font-size: 0.9rem;">Premium beauty services marketplace for Bangalore</p>
+    <footer class="footer">
+        <!-- Footer Navigation Links -->
+        <div class="footer-nav">
+            <button class="footer-nav-link" onclick="showPage('faq')">
+                <span>❓</span>
+                <span>FAQ</span>
+            </button>
+            <span class="footer-nav-separator">•</span>
+            <button class="footer-nav-link" onclick="showPage('contact')">
+                <span>✉️</span>
+                <span>Contact</span>
+            </button>
+            <span class="footer-nav-separator">•</span>
+            <button class="footer-nav-link" onclick="showPage('privacy')">
+                <span>🔒</span>
+                <span>Privacy Policy</span>
+            </button>
         </div>
+
+        <p class="copyright">© 2026 Glam Genie. All rights reserved.</p>
+        
+        <div class="footer-creator">
+            <span class="footer-sparkle">✨</span>
+            <span style="color: rgba(255, 255, 255, 0.7);">Dreamed by</span>
+            <span class="footer-creator-name">Nisha</span>
+            <span class="footer-heart">💖</span>
+        </div>
+
+        <p class="tagline-footer">Where beauty meets technology ✨</p>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://bvpbnigfvvmpnfktnegb.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2cGJuaWdmdnZtcG5ma3RuZWdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ4NjY3NzIsImV4cCI6MjA1MDQ0Mjc3Mn0.3P9KTyM0SNwR7ZSVbwdqoQe47V-nxDXvvZWJTqYIBUk';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Waitlist form submission
-        function handleWaitlistSubmit(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('emailInput').value;
-            const successMessage = document.getElementById('successMessage');
-            const form = document.getElementById('waitlistForm');
-            
-            // In a real application, you would send this to your backend
-            console.log('Waitlist signup:', email);
-            
-            // Show success message
-            successMessage.classList.add('show');
-            form.reset();
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
-            
-            return false;
-        }
+        // Wait for DOM to be ready before generating stars
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize stars
+            startShootingStars();
+            generateStars();
 
-        // Hide scroll indicator after scrolling
-        window.addEventListener('scroll', function() {
+            // Initialize scroll indicator
             const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (window.scrollY > 100) {
-                scrollIndicator.style.opacity = '0';
-            } else {
-                scrollIndicator.style.opacity = '1';
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    document.getElementById('features').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                });
             }
         });
+
+        // Generate Subtle Stars for Hero
+        function generateStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            const regularStars = 130;
+            const sparkleStars = 20;
+
+            // Create regular twinkling stars
+            for (let i = 0; i < regularStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 4 + 4) + 's');
+                star.style.setProperty('--delay', Math.random() * 4 + 's');
+                
+                starsLayer.appendChild(star);
+            }
+
+            // Create sparkling stars (more prominent)
+            for (let i = 0; i < sparkleStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-sparkle';
+                
+                const size = Math.random() * 2.5 + 1.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 5) + 's');
+                star.style.setProperty('--delay', Math.random() * 5 + 's');
+                
+                starsLayer.appendChild(star);
+            }
+        }
+
+        // Generate Shooting Stars
+        function startShootingStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                
+                // Random position
+                const startY = Math.random() * 50; // Top 50%
+                const startX = Math.random() * 100;
+                
+                star.style.top = startY + '%';
+                star.style.left = startX + '%';
+                
+                starsLayer.appendChild(star);
+                
+                // Cleanup
+                setTimeout(() => {
+                    star.remove();
+                }, 2000);
+            }, 3000); // New shooting star every 3 seconds
+        }
+
+        // Form Handler
+        const form = document.getElementById('emailForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                showMessage('Please enter your email', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+
+            try {
+                const { data, error } = await supabase
+                    .from('kv_store_6da1cc8e')
+                    .insert([
+                        {
+                            key: `waitlist:${Date.now()}:${email}`,
+                            value: {
+                                email: email,
+                                joined_at: new Date().toISOString(),
+                                source: 'landing_page',
+                                user_agent: navigator.userAgent
+                            }
+                        }
+                    ]);
+
+                if (error) {
+                    if (error.code === '23505') {
+                        showMessage('✓ You\'re already on the waitlist!', 'success');
+                    } else {
+                        throw error;
+                    }
+                } else {
+                    showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
+                    emailInput.value = '';
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Something went wrong. Please try again.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        });
+
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = `message ${type} show`;
+            
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 5000);
+        }
+
+        // Page Navigation
+        function showPage(pageId) {
+            const pageContainers = document.querySelectorAll('.page-container');
+            pageContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function showHome() {
+            const pageContainers = document.querySelectorAll('.page-container');
+            pageContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
+        // Contact Form Handler
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('contactSubmitBtn');
+            const originalText = btn.textContent;
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                showMessage('✓ Message sent! We\'ll get back to you soon.', 'success');
+                document.getElementById('contactForm').reset();
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }, 1500);
+        }
     </script>
 </body>
 </html>
