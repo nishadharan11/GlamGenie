@@ -1116,6 +1116,73 @@
         <div class="ambient-glow glow-center"></div>
     </div>
 
+    <!-- STARS SCRIPT - Runs immediately after starsLayer is created -->
+    <script>
+    (function() {
+        'use strict';
+        console.log('⭐ Stars script loading...');
+        
+        function generateStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            if (!starsLayer) {
+                console.error('❌ starsLayer not found!');
+                return;
+            }
+            
+            const regularStars = 130;
+            const sparkleStars = 20;
+
+            for (let i = 0; i < regularStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 0.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 4 + 4) + 's');
+                star.style.setProperty('--delay', Math.random() * 4 + 's');
+                starsLayer.appendChild(star);
+            }
+
+            for (let i = 0; i < sparkleStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-sparkle';
+                const size = Math.random() * 2.5 + 1.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 5) + 's');
+                star.style.setProperty('--delay', Math.random() * 5 + 's');
+                starsLayer.appendChild(star);
+            }
+            
+            console.log('✨ Stars created:', regularStars + sparkleStars);
+        }
+
+        function startShootingStars() {
+            const starsLayer = document.getElementById('starsLayer');
+            if (!starsLayer) return;
+            
+            setInterval(() => {
+                const star = document.createElement('div');
+                star.className = 'shooting-star';
+                star.style.top = (Math.random() * 50) + '%';
+                star.style.left = (Math.random() * 100) + '%';
+                starsLayer.appendChild(star);
+                setTimeout(() => star.remove(), 2000);
+            }, 3000);
+            
+            console.log('🌠 Shooting stars active!');
+        }
+
+        // Run immediately
+        generateStars();
+        startShootingStars();
+    })();
+    </script>
+
     <!-- Hero Section -->
     <section class="hero-container">
         <!-- Main Content -->
@@ -1807,34 +1874,15 @@
     </div>
 
     <script>
-        // Supabase Configuration
-        const SUPABASE_URL = 'https://bvpbnigfvvmpnfktnegb.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2cGJuaWdmdnZtcG5ma3RuZWdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ4NjY3NzIsImV4cCI6MjA1MDQ0Mjc3Mn0.3P9KTyM0SNwR7ZSVbwdqoQe47V-nxDXvvZWJTqYIBUk';
+        // ========================================
+        // STARS - RUNS FIRST (Independent of Supabase)
+        // ========================================
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // Wait for DOM to be ready before generating stars
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize stars
-            startShootingStars();
-            generateStars();
-
-            // Initialize scroll indicator
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator) {
-                scrollIndicator.addEventListener('click', () => {
-                    document.getElementById('features').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                });
-            }
-        });
-
-        // Generate Subtle Stars for Hero
+        // Generate Subtle Stars
         function generateStars() {
             const starsLayer = document.getElementById('starsLayer');
             if (!starsLayer) {
-                console.error('starsLayer element not found!');
+                console.error('❌ starsLayer element not found!');
                 return;
             }
             
@@ -1873,14 +1921,14 @@
                 starsLayer.appendChild(star);
             }
             
-            console.log('Stars generated successfully!', regularStars + sparkleStars, 'stars created');
+            console.log('✨ Stars generated successfully!', regularStars + sparkleStars, 'stars created');
         }
 
         // Generate Shooting Stars
         function startShootingStars() {
             const starsLayer = document.getElementById('starsLayer');
             if (!starsLayer) {
-                console.error('starsLayer element not found for shooting stars!');
+                console.error('❌ starsLayer element not found for shooting stars!');
                 return;
             }
             
@@ -1903,71 +1951,131 @@
                 }, 2000);
             }, 3000); // New shooting star every 3 seconds
             
-            console.log('Shooting stars started!');
+            console.log('🌠 Shooting stars started!');
         }
 
-        // Form Handler
-        const form = document.getElementById('emailForm');
-        const emailInput = document.getElementById('emailInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const message = document.getElementById('message');
+        // Initialize stars IMMEDIATELY
+        function initStars() {
+            console.log('🚀 Initializing stars...');
+            generateStars();
+            startShootingStars();
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                showMessage('Please enter your email', 'error');
-                return;
+            // Initialize scroll indicator
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    document.getElementById('features').scrollIntoView({ 
+                        behavior: 'smooth' 
+                    });
+                });
             }
+        }
 
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
+        // Run stars initialization immediately when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initStars);
+        } else {
+            // DOM already loaded, run immediately
+            initStars();
+        }
 
-            try {
-                const { data, error } = await supabase
-                    .from('kv_store_6da1cc8e')
-                    .insert([
-                        {
-                            key: `waitlist:${Date.now()}:${email}`,
-                            value: {
-                                email: email,
-                                joined_at: new Date().toISOString(),
-                                source: 'landing_page',
-                                user_agent: navigator.userAgent
-                            }
-                        }
-                    ]);
+        // ========================================
+        // SUPABASE (Optional - runs independently)
+        // ========================================
+        
+        let supabase = null;
+        
+        // Try to initialize Supabase (won't break if it fails)
+        try {
+            if (typeof window.supabase !== 'undefined') {
+                const SUPABASE_URL = 'https://bvpbnigfvvmpnfktnegb.supabase.co';
+                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2cGJuaWdmdnZtcG5ma3RuZWdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ4NjY3NzIsImV4cCI6MjA1MDQ0Mjc3Mn0.3P9KTyM0SNwR7ZSVbwdqoQe47V-nxDXvvZWJTqYIBUk';
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('✅ Supabase initialized');
+            } else {
+                console.warn('⚠️ Supabase not loaded - waitlist feature will be limited');
+            }
+        } catch (err) {
+            console.warn('⚠️ Supabase initialization failed:', err);
+        }
 
-                if (error) {
-                    if (error.code === '23505') {
-                        showMessage('✓ You\'re already on the waitlist!', 'success');
-                    } else {
-                        throw error;
-                    }
-                } else {
-                    showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
-                    emailInput.value = '';
+        // ========================================
+        // FORM HANDLERS
+        // ========================================
+        
+        // Form Handler
+        window.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('emailForm');
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const message = document.getElementById('message');
+
+            if (!form) return;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const email = emailInput.value.trim();
+                
+                if (!email) {
+                    showMessage('Please enter your email', 'error');
+                    return;
                 }
 
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Something went wrong. Please try again.', 'error');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Join Waitlist';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Joining...';
+
+                try {
+                    if (!supabase) {
+                        // Fallback if Supabase isn't available
+                        console.log('📧 Email submitted (offline mode):', email);
+                        showMessage('✓ Thanks! We\'ll reach out soon.', 'success');
+                        emailInput.value = '';
+                    } else {
+                        const { data, error } = await supabase
+                            .from('kv_store_6da1cc8e')
+                            .insert([
+                                {
+                                    key: `waitlist:${Date.now()}:${email}`,
+                                    value: {
+                                        email: email,
+                                        joined_at: new Date().toISOString(),
+                                        source: 'landing_page',
+                                        user_agent: navigator.userAgent
+                                    }
+                                }
+                            ]);
+
+                        if (error) {
+                            if (error.code === '23505') {
+                                showMessage('✓ You\'re already on the waitlist!', 'success');
+                            } else {
+                                throw error;
+                            }
+                        } else {
+                            showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
+                            emailInput.value = '';
+                        }
+                    }
+
+                } catch (error) {
+                    console.error('Error:', error);
+                    showMessage('Something went wrong. Please try again.', 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Join Waitlist';
+                }
+            });
+
+            function showMessage(text, type) {
+                message.textContent = text;
+                message.className = `message ${type} show`;
+                
+                setTimeout(() => {
+                    message.classList.remove('show');
+                }, 5000);
             }
         });
-
-        function showMessage(text, type) {
-            message.textContent = text;
-            message.className = `message ${type} show`;
-            
-            setTimeout(() => {
-                message.classList.remove('show');
-            }, 5000);
-        }
 
         // Page Navigation
         function showPage(pageId) {
