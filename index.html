@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glam Genie - Beauty Services at Your Doorstep | India</title>
     <meta name="description" content="Book verified makeup artists across India. Premium beauty services at your home. Zero commission for artists!">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -1739,21 +1738,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             console.log('📋 Initializing form handler...');
             
-            // Initialize Supabase
-            let supabase = null;
-            try {
-                if (typeof window.supabase !== 'undefined') {
-                    const SUPABASE_URL = 'https://kmdocdynoneoedyaphjg.supabase.co';
-                    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZG9jZHlub25lb2VkeWFwaGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODQxMzEsImV4cCI6MjA4MzM2MDEzMX0.6dd05WiozOZaasX0bBbx3KmNDgnwk1ytRqEL20HFJj8';
-                    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                    console.log('✅ Supabase initialized');
-                } else {
-                    console.warn('⚠️ Supabase not loaded - using offline mode');
-                }
-            } catch (err) {
-                console.warn('⚠️ Supabase initialization failed:', err);
-            }
-            
             const form = document.getElementById('emailForm');
             const emailInput = document.getElementById('emailInput');
             const submitBtn = document.getElementById('submitBtn');
@@ -1796,39 +1780,38 @@
                 submitBtn.textContent = 'Joining...';
 
                 try {
-                    if (!supabase) {
-                        console.log('📧 Offline mode - email:', email);
-                        showMessage('✓ Thanks! We\'ll reach out soon.', 'success');
-                        emailInput.value = '';
-                    } else {
-                        console.log('📧 Submitting to Supabase:', email);
-                        const { data, error } = await supabase
-                            .from('kv_store_6da1cc8e')
-                            .insert([
-                                {
-                                    key: `waitlist:${Date.now()}:${email}`,
-                                    value: {
-                                        email: email,
-                                        joined_at: new Date().toISOString(),
-                                        source: 'landing_page',
-                                        user_agent: navigator.userAgent
-                                    }
-                                }
-                            ]);
-
-                        if (error) {
-                            console.error('❌ Supabase error:', error);
-                            if (error.code === '23505') {
-                                showMessage('✓ You\'re already on the waitlist!', 'success');
-                            } else {
-                                throw error;
+                    console.log('📧 Submitting email:', email);
+                    
+                    // Use server API endpoint to store waitlist data
+                    const SUPABASE_URL = 'https://kmdocdynoneoedyaphjg.supabase.co';
+                    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZG9jZHlub25lb2VkeWFwaGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODQxMzEsImV4cCI6MjA4MzM2MDEzMX0.6dd05WiozOZaasX0bBbx3KmNDgnwk1ytRqEL20HFJj8';
+                    
+                    const response = await fetch(`${SUPABASE_URL}/functions/v1/make-server-6da1cc8e/kv/set`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        },
+                        body: JSON.stringify({
+                            key: `waitlist:${Date.now()}:${email}`,
+                            value: {
+                                email: email,
+                                joined_at: new Date().toISOString(),
+                                source: 'landing_page',
+                                user_agent: navigator.userAgent
                             }
-                        } else {
-                            console.log('✅ Successfully added!', data);
-                            showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
-                            emailInput.value = '';
-                        }
+                        })
+                    });
+
+                    const result = await response.json();
+                    
+                    if (!response.ok || !result.success) {
+                        throw new Error(result.error || 'Failed to save email');
                     }
+
+                    console.log('✅ Successfully added to waitlist!', result);
+                    showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
+                    emailInput.value = '';
 
                 } catch (error) {
                     console.error('❌ Error:', error);
