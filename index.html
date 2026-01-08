@@ -1875,6 +1875,101 @@
 
     <script>
         // ========================================
+        // GLOBAL NAVIGATION FUNCTIONS (Define FIRST!)
+        // ========================================
+        console.log('🔧 Defining navigation functions...');
+        
+        // Page Navigation
+        window.showPage = function(pageId) {
+            console.log('📄 Navigating to page:', pageId);
+            
+            // Hide main landing page content
+            const heroSection = document.querySelector('.hero-container');
+            const featuresSection = document.querySelector('.features-section');
+            const servicesSection = document.querySelector('.services-section');
+            const downloadSection = document.querySelector('.download-section');
+            const footer = document.querySelector('.footer');
+            
+            if (heroSection) heroSection.style.display = 'none';
+            if (featuresSection) featuresSection.style.display = 'none';
+            if (servicesSection) servicesSection.style.display = 'none';
+            if (downloadSection) downloadSection.style.display = 'none';
+            if (footer) footer.style.display = 'none';
+            
+            // Hide all page containers
+            const pageContainers = document.querySelectorAll('.page-container');
+            pageContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        };
+
+        window.showHome = function() {
+            console.log('🏠 Returning to home');
+            
+            // Show main landing page content
+            const heroSection = document.querySelector('.hero-container');
+            const featuresSection = document.querySelector('.features-section');
+            const servicesSection = document.querySelector('.services-section');
+            const downloadSection = document.querySelector('.download-section');
+            const footer = document.querySelector('.footer');
+            
+            if (heroSection) heroSection.style.display = 'flex';
+            if (featuresSection) featuresSection.style.display = 'block';
+            if (servicesSection) servicesSection.style.display = 'block';
+            if (downloadSection) downloadSection.style.display = 'block';
+            if (footer) footer.style.display = 'block';
+            
+            // Hide all page containers
+            const pageContainers = document.querySelectorAll('.page-container');
+            pageContainers.forEach(container => {
+                container.classList.remove('active');
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // FAQ Toggle
+        window.toggleFAQ = function(element) {
+            element.classList.toggle('active');
+        };
+
+        // Contact Form Handler
+        window.handleContactSubmit = function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('contactSubmitBtn');
+            const originalText = btn.textContent;
+            const message = document.getElementById('message');
+            
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                if (message) {
+                    message.textContent = '✓ Message sent! We\'ll get back to you soon.';
+                    message.className = 'message success show';
+                    setTimeout(() => {
+                        message.classList.remove('show');
+                    }, 5000);
+                }
+                const contactForm = document.getElementById('contactFormElement');
+                if (contactForm) contactForm.reset();
+                btn.disabled = false;
+                btn.textContent = originalText;
+            }, 1500);
+        };
+
+        console.log('✅ Navigation functions defined!');
+        console.log('✅ Test - showPage is:', typeof window.showPage);
+        console.log('✅ Test - showHome is:', typeof window.showHome);
+
+        // ========================================
         // STARS - RUNS FIRST (Independent of Supabase)
         // ========================================
         
@@ -2076,50 +2171,6 @@
                 }, 5000);
             }
         });
-
-        // Page Navigation
-        function showPage(pageId) {
-            const pageContainers = document.querySelectorAll('.page-container');
-            pageContainers.forEach(container => {
-                container.classList.remove('active');
-            });
-
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-
-        function showHome() {
-            const pageContainers = document.querySelectorAll('.page-container');
-            pageContainers.forEach(container => {
-                container.classList.remove('active');
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // FAQ Toggle
-        function toggleFAQ(element) {
-            element.classList.toggle('active');
-        }
-
-        // Contact Form Handler
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            const btn = document.getElementById('contactSubmitBtn');
-            const originalText = btn.textContent;
-            
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-            
-            setTimeout(() => {
-                showMessage('✓ Message sent! We\'ll get back to you soon.', 'success');
-                document.getElementById('contactForm').reset();
-                btn.disabled = false;
-                btn.textContent = originalText;
-            }, 1500);
-        }
     </script>
 </body>
 </html>
