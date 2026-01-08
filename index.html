@@ -956,44 +956,33 @@
             font-size: 1.2rem;
             font-weight: bold;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .contact-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(168, 85, 247, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
         }
 
-        .contact-icon-text {
-            flex: 1;
+        .contact-info-item:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        .contact-icon-label {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            margin-bottom: 4px;
+        .contact-info-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 6px;
         }
 
-        .contact-icon-value {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+        .contact-info-value {
+            font-size: 1rem;
+            color: white;
         }
 
         /* Privacy Page Styles */
@@ -1007,78 +996,11 @@
             margin: 0 auto;
         }
 
-        .privacy-intro {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 32px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-        }
-
         .privacy-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-
-        .privacy-section-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .privacy-section-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(236, 72, 153, 0.3));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
+            margin-bottom: 40px;
         }
 
         .privacy-section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            padding-top: 8px;
-        }
-
-        .privacy-subsection {
-            margin-bottom: 20px;
-        }
-
-        .privacy-subsection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 8px;
-        }
-
-        .privacy-subsection-text {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.7;
-        }
-
-        .privacy-contact-box {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 32px;
-            margin-top: 32px;
-        }
-
-        .privacy-contact-title {
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
@@ -1088,70 +1010,71 @@
             gap: 10px;
         }
 
-        .privacy-link {
-            color: #fbb6ce;
-            text-decoration: underline;
-            transition: color 0.3s ease;
+        .privacy-text {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        .privacy-link:hover {
-            color: #fda4af;
+        .privacy-list {
+            list-style: none;
+            padding: 0;
         }
 
+        .privacy-list li {
+            color: rgba(255, 255, 255, 0.75);
+            padding: 8px 0 8px 24px;
+            position: relative;
+        }
+
+        .privacy-list li:before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #ec4899;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .page-title {
-                font-size: 2rem;
-            }
-            
-            .page-subtitle {
-                font-size: 1rem;
-            }
-        }
-
-        /* ========================================
-           MOBILE OPTIMIZATION - COMPREHENSIVE
-           ======================================== */
-        
-        @media (max-width: 768px) {
-            /* Hero Section */
-            .content {
-                padding: 40px 20px;
-            }
-
-            .logo-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
-                margin-bottom: 24px;
-            }
-
             .main-heading {
                 font-size: 2.5rem;
-                margin-bottom: 16px;
             }
 
             .tagline {
-                font-size: 1.2rem;
-                margin-bottom: 32px;
+                font-size: 1.1rem;
             }
 
-            /* Email Form - Stack on Mobile */
             .email-form {
                 flex-direction: column;
                 gap: 12px;
-                max-width: 100%;
-            }
-
-            .email-input {
-                width: 100%;
-                padding: 16px 20px;
-                font-size: 16px; /* Prevent zoom on iOS */
             }
 
             .submit-btn {
                 width: 100%;
-                padding: 16px 24px;
-                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            /* Mobile adjustments */
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
             }
 
             /* Badge */
@@ -1173,434 +1096,26 @@
                 bottom: 20px;
             }
 
-            .scroll-text {
-                font-size: 0.7rem;
-            }
-
-            .scroll-arrow {
-                font-size: 1.2rem;
-            }
-
-            /* Sections */
-            .features-section,
-            .services-section,
-            .download-section {
-                padding: 80px 20px;
-            }
-
-            .section-title {
+            /* Page Title */
+            .page-title {
                 font-size: 2rem;
-                margin-bottom: 12px;
             }
+        }
 
-            .section-subtitle {
-                font-size: 1rem;
-                margin-bottom: 48px;
-            }
-
-            /* Feature Cards */
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .feature-card {
-                padding: 32px 24px;
-            }
-
-            .feature-icon {
-                font-size: 3rem;
-                margin-bottom: 16px;
-            }
-
-            .feature-title {
-                font-size: 1.2rem;
-                margin-bottom: 10px;
-            }
-
-            .feature-desc {
-                font-size: 0.9rem;
-            }
-
-            /* Service Cards */
+        @media (max-width: 480px) {
             .services-grid {
                 grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .service-card {
-                padding: 28px 24px;
-            }
-
-            .service-icon {
-                font-size: 2.2rem;
-                margin-bottom: 12px;
-            }
-
-            .service-title {
-                font-size: 1.15rem;
-                margin-bottom: 8px;
-            }
-
-            .service-price {
-                font-size: 1rem;
-            }
-
-            /* Download Section */
-            .download-title {
-                font-size: 2rem;
-                margin-bottom: 12px;
-            }
-
-            .download-subtitle {
-                font-size: 1.05rem;
-                margin-bottom: 32px;
-            }
-
-            .coming-soon-badge {
-                padding: 10px 24px;
-                font-size: 0.9rem;
-                margin-bottom: 32px;
-            }
-
-            .download-buttons {
-                flex-direction: column;
-                gap: 16px;
-                width: 100%;
-            }
-
-            .app-store-btn {
-                width: 100%;
-                max-width: 100%;
-                justify-content: center;
-                padding: 14px 24px;
-            }
-
-            .app-icon {
-                width: 28px;
-                height: 28px;
-            }
-
-            .app-text-small {
-                font-size: 0.7rem;
-            }
-
-            .app-text-large {
-                font-size: 1rem;
-            }
-
-            .notify-text {
-                margin-top: 24px;
-                font-size: 0.85rem;
-            }
-
-            /* Footer */
-            .footer {
-                padding: 48px 20px 32px;
-            }
-
-            .footer-nav {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .footer-nav-separator {
-                display: none;
-            }
-
-            .footer-nav-link {
-                font-size: 0.85rem;
-                padding: 10px 16px;
-            }
-
-            .copyright {
-                font-size: 0.8rem;
-                margin-bottom: 20px;
-            }
-
-            .footer-creator {
-                padding: 12px 24px;
-                font-size: 0.85rem;
-            }
-
-            .tagline-footer {
-                font-size: 0.8rem;
-                margin-top: 12px;
-            }
-
-            /* Page Header */
-            .page-header {
-                margin-bottom: 40px;
-            }
-
-            .page-icon {
-                width: 64px;
-                height: 64px;
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-
-            /* FAQ Page */
-            .faq-page {
-                padding: 32px 20px 60px;
-            }
-
-            .faq-category {
-                margin-bottom: 32px;
-            }
-
-            .faq-category-title {
-                font-size: 1.3rem;
-                margin-bottom: 20px;
-            }
-
-            .faq-question-header {
-                padding: 16px 18px;
-                font-size: 0.95rem;
-            }
-
-            .faq-question-icon {
-                font-size: 1rem;
-            }
-
-            .faq-answer-content {
-                padding: 0 18px 18px;
-                font-size: 0.9rem;
-            }
-
-            /* Contact Page */
-            .contact-page {
-                padding: 32px 20px 60px;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .contact-form {
-                padding: 24px;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-            }
-
-            .form-label {
-                font-size: 0.85rem;
-                margin-bottom: 6px;
-            }
-
-            .form-input {
-                padding: 12px 16px;
-                font-size: 16px; /* Prevent zoom on iOS */
-            }
-
-            .form-textarea {
-                min-height: 120px;
-            }
-
-            .contact-info-card {
-                padding: 20px;
-                margin-bottom: 20px;
-            }
-
-            .contact-info-title {
-                font-size: 1.1rem;
-                margin-bottom: 16px;
-            }
-
-            .contact-info-item {
-                margin-bottom: 16px;
-            }
-
-            .contact-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .contact-icon-label {
-                font-size: 0.9rem;
-            }
-
-            .contact-icon-value {
-                font-size: 0.85rem;
-            }
-
-            /* Privacy Page */
-            .privacy-page {
-                padding: 32px 20px 60px;
-            }
-
-            .privacy-intro {
-                padding: 20px;
-                margin-bottom: 24px;
-                font-size: 0.9rem;
-            }
-
-            .privacy-section {
-                padding: 24px;
-                margin-bottom: 20px;
-            }
-
-            .privacy-section-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .privacy-section-title {
-                font-size: 1.3rem;
-            }
-
-            .privacy-subsection {
-                margin-bottom: 16px;
-            }
-
-            .privacy-subsection-title {
-                font-size: 1rem;
-                margin-bottom: 6px;
-            }
-
-            .privacy-subsection-text {
-                font-size: 0.9rem;
-            }
-
-            .privacy-contact-box {
-                padding: 24px;
-                margin-top: 24px;
-            }
-
-            .privacy-contact-title {
-                font-size: 1.3rem;
-                margin-bottom: 12px;
-            }
-
-            /* Back Button */
-            .back-btn {
-                padding: 10px 20px;
-                font-size: 0.85rem;
-                margin-bottom: 20px;
-            }
-
-            /* Ambient Glows - Smaller on Mobile */
-            .ambient-glow {
-                width: 400px;
-                height: 400px;
-            }
-
-            .glow-center {
-                width: 500px;
-                height: 500px;
-            }
-        }
-
-        /* Extra Small Mobile (< 480px) */
-        @media (max-width: 480px) {
-            .main-heading {
-                font-size: 2rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .section-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .feature-title {
-                font-size: 1.1rem;
-            }
-
-            .feature-desc {
-                font-size: 0.85rem;
-            }
-
-            .download-title {
-                font-size: 1.75rem;
-            }
-
-            .download-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .app-text-large {
-                font-size: 0.9rem;
-            }
-
-            .footer-creator {
-                padding: 10px 20px;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* Landscape Mobile Fix */
-        @media (max-height: 600px) and (orientation: landscape) {
-            .hero-container {
-                min-height: auto;
-                padding: 40px 0;
-            }
-
-            .content {
-                padding: 30px 24px;
-            }
-
-            .scroll-indicator {
-                display: none;
-            }
-
-            .logo-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-                margin-bottom: 16px;
-            }
-
-            .main-heading {
-                font-size: 2rem;
-                margin-bottom: 12px;
-            }
-
-            .tagline {
-                font-size: 1rem;
-                margin-bottom: 24px;
-            }
-
-            .badge {
-                margin-bottom: 24px;
-            }
-        }
-
-        /* iOS Safe Area */
-        @supports (padding: max(0px)) {
-            .content,
-            .features-section,
-            .services-section,
-            .download-section,
-            .footer,
-            .faq-page,
-            .contact-page,
-            .privacy-page {
-                padding-left: max(20px, env(safe-area-inset-left));
-                padding-right: max(20px, env(safe-area-inset-right));
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fixed Background for Starry Effect throughout -->
+    <!-- Fixed Starry Background -->
     <div class="fixed-background">
         <div class="stars-layer" id="starsLayer"></div>
-        <!-- Ambient Glows -->
         <div class="ambient-glow glow-top-right"></div>
         <div class="ambient-glow glow-bottom-left"></div>
-        <div class="ambient-glow glow-center"></div>
+        <div class="glow-center"></div>
     </div>
 
     <!-- STARS SCRIPT - Runs immediately after starsLayer is created -->
@@ -1671,27 +1186,24 @@
     </script>
 
     <!-- Hero Section -->
-    <section class="hero-container">
-        <!-- Main Content -->
+    <div class="hero-container">
         <div class="content">
             <!-- Top Badge -->
             <div class="badge">
                 <span class="badge-icon">✨</span>
-                <span>Glam Genie ✦ Beauty Marketplace</span>
+                <span>Launching Soon Across India</span>
             </div>
 
             <!-- Logo Icon -->
-            <div class="logo-icon">✨</div>
+            <div class="logo-icon">
+                💄
+            </div>
 
             <!-- Main Heading -->
-            <h1 class="main-heading">
-                Glam Genie
-            </h1>
+            <h1 class="main-heading">Glam Genie</h1>
 
             <!-- Tagline -->
-            <p class="tagline">
-                Book your glow, on the go!
-            </p>
+            <p class="tagline">Premium beauty artists at your doorstep.<br>Zero commission. Pure magic.</p>
 
             <!-- Email Form -->
             <form class="email-form" id="emailForm">
@@ -1699,9 +1211,9 @@
                     type="email" 
                     class="email-input" 
                     id="emailInput"
-                    placeholder="Enter your email address"
+                    placeholder="Enter your email" 
                     required
-                >
+                />
                 <button type="submit" class="submit-btn" id="submitBtn">
                     Join Waitlist
                 </button>
@@ -1716,96 +1228,74 @@
             <div class="scroll-text">Scroll to explore</div>
             <div class="scroll-arrow">↓</div>
         </div>
-    </section>
+    </div>
 
     <!-- Features Section -->
     <section class="features-section" id="features">
-        <h2 class="section-title">Why Glam Genie?</h2>
-        <p class="section-subtitle">
-            India's first zero-commission beauty marketplace connecting users with verified professional makeup artists
-        </p>
+        <h2 class="section-title">Why Artists Love Us</h2>
+        <p class="section-subtitle">Empowering makeup artists with fair pricing and complete freedom</p>
         
         <div class="features-grid">
             <div class="feature-card">
-                <span class="feature-icon">🏠</span>
-                <h3 class="feature-title">Doorstep Service</h3>
-                <p class="feature-desc">Professional makeup artists come to you across India. No salon visits, just pure convenience.</p>
+                <span class="feature-icon">🎨</span>
+                <h3 class="feature-title">Zero Commission</h3>
+                <p class="feature-desc">Keep 100% of your earnings. We charge artists a flat subscription, not a percentage of their hard work.</p>
             </div>
-
+            
             <div class="feature-card">
-                <span class="feature-icon">📸</span>
-                <h3 class="feature-title">Artist Portfolios</h3>
-                <p class="feature-desc">Browse stunning portfolios, view previous work, and book directly from artist profiles.</p>
+                <span class="feature-icon">⏰</span>
+                <h3 class="feature-title">Flexible Schedule</h3>
+                <p class="feature-desc">Work when you want. Set your own hours and availability. Complete control over your calendar.</p>
             </div>
-
+            
             <div class="feature-card">
-                <span class="feature-icon">💰</span>
-                <h3 class="feature-title">Artists Keep 100%</h3>
-                <p class="feature-desc">Zero commission model. Artists keep every rupee earned. Simple subscriptions for unlimited bookings.</p>
-            </div>
-
-            <div class="feature-card">
-                <span class="feature-icon">⭐</span>
-                <h3 class="feature-title">Verified Artists</h3>
-                <p class="feature-desc">All artists are background-verified with proven portfolios and real client reviews.</p>
-            </div>
-
-            <div class="feature-card">
-                <span class="feature-icon">🎯</span>
-                <h3 class="feature-title">Points & Rewards</h3>
-                <p class="feature-desc">Earn points for bookings, referrals, and reviews. Redeem for discounts and ad removal.</p>
-            </div>
-
-            <div class="feature-card">
-                <span class="feature-icon">🛡️</span>
-                <h3 class="feature-title">Safety First</h3>
-                <p class="feature-desc">Zero tolerance policy with pre/post checklists, instant reporting, and strict verification.</p>
+                <span class="feature-icon">✨</span>
+                <h3 class="feature-title">Premium Clients</h3>
+                <p class="feature-desc">Connect with clients who value quality. Build your brand and grow your business with verified bookings.</p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="services-section">
-        <h2 class="section-title">Our Services</h2>
-        <p class="section-subtitle">
-            Premium beauty services from bridal makeup to party looks
-        </p>
+        <h2 class="section-title">Popular Services</h2>
+        <p class="section-subtitle">Professional beauty services delivered to your home</p>
         
         <div class="services-grid">
             <div class="service-card">
-                <span class="service-icon">💄</span>
+                <span class="service-icon">💋</span>
                 <h3 class="service-title">Bridal Makeup</h3>
-                <p class="service-price">Starting from ₹8,000</p>
+                <p class="service-price">From ₹15,000</p>
             </div>
-
+            
             <div class="service-card">
-                <span class="service-icon">✨</span>
+                <span class="service-icon">🌟</span>
                 <h3 class="service-title">Party Makeup</h3>
-                <p class="service-price">Starting from ₹2,500</p>
+                <p class="service-price">From ₹3,500</p>
             </div>
-
+            
             <div class="service-card">
-                <span class="service-icon">💇‍♀️</span>
+                <span class="service-icon">💆</span>
                 <h3 class="service-title">Hair Styling</h3>
-                <p class="service-price">Starting from ₹1,500</p>
+                <p class="service-price">From ₹2,000</p>
             </div>
-
+            
             <div class="service-card">
-                <span class="service-icon">🎨</span>
-                <h3 class="service-title">Mehendi Design</h3>
-                <p class="service-price">Starting from ₹999</p>
+                <span class="service-icon">💅</span>
+                <h3 class="service-title">Nail Art</h3>
+                <p class="service-price">From ₹800</p>
             </div>
-
+            
             <div class="service-card">
-                <span class="service-icon">🥻</span>
-                <h3 class="service-title">Saree Draping</h3>
-                <p class="service-price">Starting from ₹1,000</p>
+                <span class="service-icon">🧖</span>
+                <h3 class="service-title">Facial & Skincare</h3>
+                <p class="service-price">From ₹1,500</p>
             </div>
-
+            
             <div class="service-card">
-                <span class="service-icon">📸</span>
-                <h3 class="service-title">Photoshoot Makeup</h3>
-                <p class="service-price">Starting from ₹3,500</p>
+                <span class="service-icon">👁️</span>
+                <h3 class="service-title">Eye Makeup</h3>
+                <p class="service-price">From ₹1,000</p>
             </div>
         </div>
     </section>
@@ -1813,278 +1303,133 @@
     <!-- Download Section -->
     <section class="download-section">
         <div class="download-content">
-            <h2 class="download-title">Get Glam Genie</h2>
-            <p class="download-subtitle">Experience the ultimate beauty marketplace on your mobile</p>
-
+            <h2 class="download-title">Get the App</h2>
+            <p class="download-subtitle">Book beauty services in minutes. Available for iOS and Android.</p>
+            
             <div class="coming-soon-badge">
+                <span>🚀</span>
                 <span>Coming Soon</span>
             </div>
-
+            
             <div class="download-buttons">
                 <div class="app-store-btn">
-                    <svg class="app-icon" viewBox="0 0 384 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.3-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    <div class="app-icon">🍎</div>
                     <div class="app-text">
-                        <span class="app-text-large">Download on App Store</span>
-                        <span class="app-text-small">iOS</span>
+                        <span class="app-text-small">Download on the</span>
+                        <span class="app-text-large">App Store</span>
                     </div>
                 </div>
-
+                
                 <div class="app-store-btn">
-                    <svg class="app-icon" viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l220.7-221.3-60.1-60.1L104.6 499z"/></svg>
+                    <div class="app-icon">📱</div>
                     <div class="app-text">
-                        <span class="app-text-large">Download on Google Play</span>
-                        <span class="app-text-small">Android</span>
+                        <span class="app-text-small">Get it on</span>
+                        <span class="app-text-large">Google Play</span>
                     </div>
                 </div>
             </div>
-
-            <p class="notify-text">Notify me when it's available</p>
+            
+            <p class="notify-text">Join the waitlist to get notified when we launch!</p>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <!-- Footer Navigation Links -->
-        <div class="footer-nav">
-            <button class="footer-nav-link" onclick="showPage('faq')">
-                <span>❓</span>
-                <span>FAQ</span>
-            </button>
-            <span class="footer-nav-separator">•</span>
-            <button class="footer-nav-link" onclick="showPage('contact')">
-                <span>✉️</span>
-                <span>Contact</span>
-            </button>
-            <span class="footer-nav-separator">•</span>
-            <button class="footer-nav-link" onclick="showPage('privacy')">
-                <span>🔒</span>
-                <span>Privacy Policy</span>
-            </button>
-        </div>
-
-        <p class="copyright">© 2026 Glam Genie. All rights reserved.</p>
-        
-        <div class="footer-creator">
-            <span class="footer-sparkle">✨</span>
-            <span style="color: rgba(255, 255, 255, 0.7);">Dreamed by</span>
-            <span class="footer-creator-name">Nisha</span>
-            <span class="footer-heart">💖</span>
-        </div>
-
-        <p class="tagline-footer">Where beauty meets technology ✨</p>
-    </footer>
-
     <!-- FAQ Page -->
-    <div id="faq" class="page-container">
-        <div class="faq-page">
-            <button class="back-btn" onclick="showHome()">
-                <span>←</span>
-                <span>Back to Home</span>
-            </button>
+    <div class="page-container faq-page" id="faq">
+        <button class="back-btn" id="faqBackBtn">
+            <span>←</span>
+            <span>Back to Home</span>
+        </button>
 
-            <div class="page-header">
-                <div class="page-icon">❓</div>
-                <h1 class="page-title">Frequently Asked Questions</h1>
-                <p class="page-subtitle">Everything you need to know about Glam Genie</p>
+        <div class="page-header">
+            <div class="page-icon">❓</div>
+            <h1 class="page-title">Frequently Asked Questions</h1>
+            <p class="page-subtitle">Everything you need to know about Glam Genie</p>
+        </div>
+
+        <div class="faq-content">
+            <!-- For Customers -->
+            <div class="faq-category">
+                <h3 class="faq-category-title">
+                    <span>👤</span>
+                    For Customers
+                </h3>
+
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>What is Glam Genie?</span>
+                        <span class="faq-question-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Glam Genie is an on-demand beauty platform that connects you with verified makeup artists and beauty professionals who provide services at your home.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>How do I book a service?</span>
+                        <span class="faq-question-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Simply download our app, browse verified artists, select your desired service, pick a date and time, and confirm your booking. It's that easy!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>Are the artists verified?</span>
+                        <span class="faq-question-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! All artists go through a rigorous verification process. We check credentials, review portfolios, and ensure they meet our quality standards.
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="faq-content">
-                <!-- General Questions -->
-                <div class="faq-category">
-                    <h2 class="faq-category-title">
-                        <span>💫</span>
-                        <span>General Questions</span>
-                    </h2>
+            <!-- For Artists -->
+            <div class="faq-category">
+                <h3 class="faq-category-title">
+                    <span>💄</span>
+                    For Artists
+                </h3>
 
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>What is Glam Genie?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Glam Genie is India's first zero-commission beauty marketplace that connects users with verified professional makeup artists. We offer premium doorstep beauty services across India, ensuring artists keep 100% of their earnings through our subscription model.
-                            </div>
-                        </div>
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>What's the commission structure?</span>
+                        <span class="faq-question-icon">▼</span>
                     </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How is Glam Genie different from other beauty apps?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Unlike traditional platforms that charge 20-30% commission, Glam Genie operates on a zero-commission model. Artists pay a simple subscription and keep 100% of their earnings. This means better prices for you and fair compensation for artists.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>Which cities do you operate in?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                We're launching across major Indian cities including Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Pune, Kolkata, and Ahmedabad. More cities will be added based on demand. Join our waitlist to be notified when we launch in your area!
-                            </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We charge ZERO commission! Artists pay a flat monthly/yearly subscription fee and keep 100% of their earnings. No hidden fees, no percentage cuts.
                         </div>
                     </div>
                 </div>
 
-                <!-- For Users -->
-                <div class="faq-category">
-                    <h2 class="faq-category-title">
-                        <span>👤</span>
-                        <span>For Users</span>
-                    </h2>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How do I book a makeup artist?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Simply browse artist portfolios, check their ratings and reviews, select your preferred date and time, and confirm your booking. Artists will come to your doorstep with all necessary equipment and products.
-                            </div>
-                        </div>
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>How do I join as an artist?</span>
+                        <span class="faq-question-icon">▼</span>
                     </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>Are the artists verified?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Yes! All artists undergo thorough background verification, portfolio review, and skill assessment. We also collect real client reviews and maintain strict quality standards to ensure your safety and satisfaction.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>What if I'm not satisfied with the service?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                We have a zero-tolerance policy for poor service. If you're not satisfied, you can report the issue immediately through our app. We take all complaints seriously and ensure appropriate action is taken.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>What are Glam Points?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Glam Points are our reward system! Earn points for bookings, referrals, and reviews. Redeem them for discounts on services, ad removal, and exclusive perks. The more you use Glam Genie, the more you save!
-                            </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Download our artist app, submit your portfolio, complete verification, and you're ready to start accepting bookings!
                         </div>
                     </div>
                 </div>
 
-                <!-- For Artists -->
-                <div class="faq-category">
-                    <h2 class="faq-category-title">
-                        <span>💄</span>
-                        <span>For Artists</span>
-                    </h2>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How does the zero-commission model work?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Artists pay a simple monthly or yearly subscription fee and keep 100% of their earnings from bookings. No hidden charges, no commission cuts. Your hard work, your money!
-                            </div>
-                        </div>
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <div class="faq-question-header">
+                        <span>Can I set my own prices?</span>
+                        <span class="faq-question-icon">▼</span>
                     </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How do I join as a makeup artist?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Join our waitlist and select "I'm a Makeup Artist" when signing up. You'll need to submit your portfolio, complete our verification process, and choose a subscription plan. We'll guide you through every step!
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>What subscription plans are available?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                We offer flexible monthly and yearly subscription plans with unlimited bookings. Yearly subscriptions come with significant discounts. Detailed pricing will be shared during onboarding.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How do I receive payments?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Payments are processed securely through our platform and transferred directly to your bank account within 24-48 hours of service completion. You'll have full transparency with detailed earnings reports.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pricing & Payments -->
-                <div class="faq-category">
-                    <h2 class="faq-category-title">
-                        <span>💰</span>
-                        <span>Pricing & Payments</span>
-                    </h2>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>How much do services cost?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Prices vary by artist expertise, service type, and location. Bridal makeup starts from ₹8,000, party makeup from ₹2,500, and basic services from ₹999. You can see exact pricing on each artist's profile.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>What payment methods do you accept?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                We accept all major payment methods including UPI, credit/debit cards, net banking, and digital wallets. All transactions are secure and encrypted.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <div class="faq-question-header">
-                            <span>Is there a cancellation fee?</span>
-                            <span class="faq-question-icon">▼</span>
-                        </div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-content">
-                                Cancellations made 24+ hours before the appointment are free. Cancellations within 24 hours may incur a small fee to compensate the artist for blocked time. Emergency situations are handled case-by-case.
-                            </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! You have complete control over your pricing, schedule, and service offerings. Your business, your rules.
                         </div>
                     </div>
                 </div>
@@ -2093,88 +1438,78 @@
     </div>
 
     <!-- Contact Page -->
-    <div id="contact" class="page-container">
-        <div class="contact-page">
-            <button class="back-btn" onclick="showHome()">
-                <span>←</span>
-                <span>Back to Home</span>
-            </button>
+    <div class="page-container contact-page" id="contact">
+        <button class="back-btn" id="contactBackBtn">
+            <span>←</span>
+            <span>Back to Home</span>
+        </button>
 
-            <div class="page-header">
-                <div class="page-icon">✉️</div>
-                <h1 class="page-title">Contact Us</h1>
-                <p class="page-subtitle">We'd love to hear from you! Get in touch with our team.</p>
+        <div class="page-header">
+            <div class="page-icon">✉️</div>
+            <h1 class="page-title">Get in Touch</h1>
+            <p class="page-subtitle">We'd love to hear from you!</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3 style="color: white; margin-bottom: 24px; font-size: 1.3rem;">Send us a Message</h3>
+                <form id="contactFormElement" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" placeholder="Your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input form-textarea" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="contactSubmitBtn">Send Message</button>
+                </form>
             </div>
 
-            <div class="contact-content">
-                <!-- Contact Form -->
-                <div class="contact-form">
-                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 24px;">Send us a message</h3>
-                    <form id="contactFormElement" onsubmit="handleContactSubmit(event)">
-                        <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-input" placeholder="Your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Subject</label>
-                            <input type="text" class="form-input" placeholder="How can we help?" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-input form-textarea" placeholder="Tell us more..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="contactSubmitBtn">Send Message</button>
-                    </form>
+            <!-- Contact Info -->
+            <div>
+                <div class="contact-info-card">
+                    <h4 class="contact-info-title">
+                        <span>📧</span>
+                        Email
+                    </h4>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">General Inquiries</div>
+                        <div class="contact-info-value">hello@glamgenie.in</div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">Artist Support</div>
+                        <div class="contact-info-value">artists@glamgenie.in</div>
+                    </div>
                 </div>
 
-                <!-- Contact Info -->
-                <div>
-                    <div class="contact-info-card">
-                        <h3 class="contact-info-title">
-                            <span>📍</span>
-                            <span>Get in Touch</span>
-                        </h3>
-                        
-                        <div class="contact-info-item">
-                            <div class="contact-icon">📧</div>
-                            <div class="contact-icon-text">
-                                <div class="contact-icon-label">Email</div>
-                                <div class="contact-icon-value">hello@glamgenie.in</div>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-item">
-                            <div class="contact-icon">📱</div>
-                            <div class="contact-icon-text">
-                                <div class="contact-icon-label">Phone</div>
-                                <div class="contact-icon-value">+91 XXXX-XXXXXX (Coming Soon)</div>
-                            </div>
-                        </div>
-
-                        <div class="contact-info-item">
-                            <div class="contact-icon">🕐</div>
-                            <div class="contact-icon-text">
-                                <div class="contact-icon-label">Support Hours</div>
-                                <div class="contact-icon-value">Mon-Sat: 9 AM - 8 PM IST</div>
-                            </div>
-                        </div>
+                <div class="contact-info-card">
+                    <h4 class="contact-info-title">
+                        <span>📍</span>
+                        Location
+                    </h4>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">Headquarters</div>
+                        <div class="contact-info-value">Mumbai, India</div>
                     </div>
+                </div>
 
-                    <div class="contact-info-card">
-                        <h3 class="contact-info-title">
-                            <span>💬</span>
-                            <span>Connect With Us</span>
-                        </h3>
-                        <div style="color: rgba(255, 255, 255, 0.7); line-height: 1.8;">
-                            Follow us on social media for updates, beauty tips, and exclusive offers!<br><br>
-                            <strong style="color: rgba(255, 255, 255, 0.9);">Instagram:</strong> @glamgenie.in<br>
-                            <strong style="color: rgba(255, 255, 255, 0.9);">Facebook:</strong> /glamgenie<br>
-                            <strong style="color: rgba(255, 255, 255, 0.9);">Twitter:</strong> @glamgenie_in
-                        </div>
+                <div class="contact-info-card">
+                    <h4 class="contact-info-title">
+                        <span>⏰</span>
+                        Support Hours
+                    </h4>
+                    <div class="contact-info-item">
+                        <div class="contact-info-label">Monday - Saturday</div>
+                        <div class="contact-info-value">9:00 AM - 8:00 PM IST</div>
                     </div>
                 </div>
             </div>
@@ -2182,183 +1517,109 @@
     </div>
 
     <!-- Privacy Policy Page -->
-    <div id="privacy" class="page-container">
-        <div class="privacy-page">
-            <button class="back-btn" onclick="showHome()">
-                <span>←</span>
-                <span>Back to Home</span>
-            </button>
+    <div class="page-container privacy-page" id="privacy">
+        <button class="back-btn" id="privacyBackBtn">
+            <span>←</span>
+            <span>Back to Home</span>
+        </button>
 
-            <div class="page-header">
-                <div class="page-icon">🔒</div>
-                <h1 class="page-title">Privacy Policy</h1>
-                <p class="page-subtitle">Your privacy is important to us. Learn how we protect your data.</p>
+        <div class="page-header">
+            <div class="page-icon">🔒</div>
+            <h1 class="page-title">Privacy Policy</h1>
+            <p class="page-subtitle">How we protect and handle your data</p>
+        </div>
+
+        <div class="privacy-content">
+            <div class="privacy-section">
+                <h3 class="privacy-section-title">
+                    <span>📋</span>
+                    Information We Collect
+                </h3>
+                <p class="privacy-text">
+                    We collect information you provide directly to us when you create an account, book services, or communicate with us. This includes:
+                </p>
+                <ul class="privacy-list">
+                    <li>Name, email, and phone number</li>
+                    <li>Location and service preferences</li>
+                    <li>Payment information (processed securely)</li>
+                    <li>Service history and reviews</li>
+                </ul>
             </div>
 
-            <div class="privacy-content">
-                <div class="privacy-intro">
-                    <strong>Last Updated: January 8, 2026</strong><br><br>
-                    At Glam Genie, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, store, and protect your data when you use our platform.
-                </div>
-
-                <!-- Information Collection -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">📝</div>
-                        <h2 class="privacy-section-title">Information We Collect</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <h3 class="privacy-subsection-title">Personal Information</h3>
-                        <p class="privacy-subsection-text">
-                            We collect information you provide directly, including name, email address, phone number, location, and payment details when you create an account or book services.
-                        </p>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <h3 class="privacy-subsection-title">Usage Data</h3>
-                        <p class="privacy-subsection-text">
-                            We automatically collect device information, IP address, browser type, and app usage patterns to improve our services and user experience.
-                        </p>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <h3 class="privacy-subsection-title">Location Data</h3>
-                        <p class="privacy-subsection-text">
-                            With your permission, we collect location data to connect you with nearby artists and provide accurate service delivery.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- How We Use Information -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">🎯</div>
-                        <h2 class="privacy-section-title">How We Use Your Information</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            • Facilitate bookings between users and makeup artists<br>
-                            • Process payments and prevent fraud<br>
-                            • Send service updates, confirmations, and notifications<br>
-                            • Improve our platform based on usage analytics<br>
-                            • Provide customer support and resolve disputes<br>
-                            • Ensure safety through verification and background checks
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Data Protection -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">🛡️</div>
-                        <h2 class="privacy-section-title">Data Protection & Security</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            We implement industry-standard security measures including encryption, secure servers, and regular security audits. All payment information is processed through PCI-DSS compliant payment gateways. We never store your complete credit card details on our servers.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Data Sharing -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">🔄</div>
-                        <h2 class="privacy-section-title">Information Sharing</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            We do not sell your personal information to third parties. We only share data:<br><br>
-                            • With makeup artists to facilitate bookings<br>
-                            • With payment processors for transactions<br>
-                            • With service providers who assist our operations<br>
-                            • When required by law or to protect our rights<br>
-                            • With your explicit consent
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Your Rights -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">✅</div>
-                        <h2 class="privacy-section-title">Your Rights</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            You have the right to:<br><br>
-                            • Access your personal data<br>
-                            • Correct inaccurate information<br>
-                            • Request deletion of your account and data<br>
-                            • Opt-out of marketing communications<br>
-                            • Export your data in a portable format<br>
-                            • Withdraw consent for data processing
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Cookies -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">🍪</div>
-                        <h2 class="privacy-section-title">Cookies & Tracking</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            We use cookies and similar technologies to enhance user experience, analyze usage patterns, and personalize content. You can control cookie preferences through your browser settings.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Children's Privacy -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">👶</div>
-                        <h2 class="privacy-section-title">Children's Privacy</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            Glam Genie is not intended for users under 18 years of age. We do not knowingly collect personal information from children. If you believe we have collected data from a minor, please contact us immediately.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Changes to Policy -->
-                <div class="privacy-section">
-                    <div class="privacy-section-header">
-                        <div class="privacy-section-icon">🔄</div>
-                        <h2 class="privacy-section-title">Changes to This Policy</h2>
-                    </div>
-
-                    <div class="privacy-subsection">
-                        <p class="privacy-subsection-text">
-                            We may update this Privacy Policy periodically. We will notify you of significant changes via email or app notification. Continued use of our services after changes constitutes acceptance of the updated policy.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                <div class="privacy-contact-box">
-                    <h3 class="privacy-contact-title">
-                        <span>📧</span>
-                        <span>Questions About Privacy?</span>
-                    </h3>
-                    <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.7;">
-                        If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:<br><br>
-                        <strong>Email:</strong> <a href="mailto:privacy@glamgenie.in" class="privacy-link">privacy@glamgenie.in</a><br>
-                        <strong>Address:</strong> Glam Genie Privacy Team, India
-                    </p>
-                </div>
+            <div class="privacy-section">
+                <h3 class="privacy-section-title">
+                    <span>🛡️</span>
+                    How We Use Your Data
+                </h3>
+                <p class="privacy-text">
+                    Your information helps us provide and improve our services:
+                </p>
+                <ul class="privacy-list">
+                    <li>Process and fulfill your bookings</li>
+                    <li>Send service updates and notifications</li>
+                    <li>Improve platform features and user experience</li>
+                    <li>Ensure safety and prevent fraud</li>
+                </ul>
             </div>
+
+            <div class="privacy-section">
+                <h3 class="privacy-section-title">
+                    <span>🔐</span>
+                    Data Security
+                </h3>
+                <p class="privacy-text">
+                    We implement industry-standard security measures to protect your personal information. All sensitive data is encrypted both in transit and at rest.
+                </p>
+            </div>
+
+            <div class="privacy-section">
+                <h3 class="privacy-section-title">
+                    <span>📞</span>
+                    Contact Us
+                </h3>
+                <p class="privacy-text">
+                    If you have questions about this Privacy Policy, please contact us at privacy@glamgenie.in
+                </p>
+            </div>
+
+            <p class="privacy-text" style="margin-top: 40px; font-style: italic; opacity: 0.6;">
+                Last updated: January 8, 2026
+            </p>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-nav">
+            <button class="footer-nav-link" id="faqNavBtn">
+                <span>❓</span>
+                <span>FAQ</span>
+            </button>
+            <span class="footer-nav-separator">•</span>
+            <button class="footer-nav-link" id="contactNavBtn">
+                <span>✉️</span>
+                <span>Contact</span>
+            </button>
+            <span class="footer-nav-separator">•</span>
+            <button class="footer-nav-link" id="privacyNavBtn">
+                <span>🔒</span>
+                <span>Privacy</span>
+            </button>
+        </div>
+
+        <p class="copyright">
+            © 2026 Glam Genie. All rights reserved.
+        </p>
+
+        <div class="footer-creator">
+            <span class="footer-sparkle">✨</span>
+            <span>Dreamed by</span>
+            <span class="footer-creator-name">Nisha</span>
+            <span class="footer-heart">♥</span>
+        </div>
+
+        <p class="tagline-footer">"Where beauty meets convenience"</p>
+    </footer>
 
     <script>
         // ========================================
@@ -2472,136 +1733,27 @@
         }, 100);
 
         // ========================================
-        // STARS - RUNS FIRST (Independent of Supabase)
+        // FORM HANDLER (Waitlist Email Form)
         // ========================================
         
-        // Generate Subtle Stars
-        function generateStars() {
-            const starsLayer = document.getElementById('starsLayer');
-            if (!starsLayer) {
-                console.error('❌ starsLayer element not found!');
-                return;
-            }
-            
-            const regularStars = 130;
-            const sparkleStars = 20;
-
-            // Create regular twinkling stars
-            for (let i = 0; i < regularStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 2 + 0.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.setProperty('--duration', (Math.random() * 4 + 4) + 's');
-                star.style.setProperty('--delay', Math.random() * 4 + 's');
-                
-                starsLayer.appendChild(star);
-            }
-
-            // Create sparkling stars (more prominent)
-            for (let i = 0; i < sparkleStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star-sparkle';
-                
-                const size = Math.random() * 2.5 + 1.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.setProperty('--duration', (Math.random() * 3 + 5) + 's');
-                star.style.setProperty('--delay', Math.random() * 5 + 's');
-                
-                starsLayer.appendChild(star);
-            }
-            
-            console.log('✨ Stars generated successfully!', regularStars + sparkleStars, 'stars created');
-        }
-
-        // Generate Shooting Stars
-        function startShootingStars() {
-            const starsLayer = document.getElementById('starsLayer');
-            if (!starsLayer) {
-                console.error('❌ starsLayer element not found for shooting stars!');
-                return;
-            }
-            
-            setInterval(() => {
-                const star = document.createElement('div');
-                star.className = 'shooting-star';
-                
-                // Random position
-                const startY = Math.random() * 50; // Top 50%
-                const startX = Math.random() * 100;
-                
-                star.style.top = startY + '%';
-                star.style.left = startX + '%';
-                
-                starsLayer.appendChild(star);
-                
-                // Cleanup
-                setTimeout(() => {
-                    star.remove();
-                }, 2000);
-            }, 3000); // New shooting star every 3 seconds
-            
-            console.log('🌠 Shooting stars started!');
-        }
-
-        // Initialize stars IMMEDIATELY
-        function initStars() {
-            console.log('🚀 Initializing stars...');
-            generateStars();
-            startShootingStars();
-
-            // Initialize scroll indicator
-            const scrollIndicator = document.querySelector('.scroll-indicator');
-            if (scrollIndicator) {
-                scrollIndicator.addEventListener('click', () => {
-                    document.getElementById('features').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                });
-            }
-        }
-
-        // Run stars initialization immediately when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initStars);
-        } else {
-            // DOM already loaded, run immediately
-            initStars();
-        }
-
-        // ========================================
-        // SUPABASE (Optional - runs independently)
-        // ========================================
-        
-        let supabase = null;
-        
-        // Try to initialize Supabase (won't break if it fails)
-        try {
-            if (typeof window.supabase !== 'undefined') {
-                const SUPABASE_URL = 'https://bvpbnigfvvmpnfktnegb.supabase.co';
-                const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2cGJuaWdmdnZtcG5ma3RuZWdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ4NjY3NzIsImV4cCI6MjA1MDQ0Mjc3Mn0.3P9KTyM0SNwR7ZSVbwdqoQe47V-nxDXvvZWJTqYIBUk';
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                console.log('✅ Supabase initialized');
-            } else {
-                console.warn('⚠️ Supabase not loaded - waitlist feature will be limited');
-            }
-        } catch (err) {
-            console.warn('⚠️ Supabase initialization failed:', err);
-        }
-
-        // ========================================
-        // FORM HANDLERS
-        // ========================================
-        
-        // Form Handler
         window.addEventListener('DOMContentLoaded', () => {
+            console.log('📋 Initializing form handler...');
+            
+            // Initialize Supabase
+            let supabase = null;
+            try {
+                if (typeof window.supabase !== 'undefined') {
+                    const SUPABASE_URL = 'https://bvpbnigfvvmpnfktnegb.supabase.co';
+                    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2cGJuaWdmdnZtcG5ma3RuZWdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ4NjY3NzIsImV4cCI6MjA1MDQ0Mjc3Mn0.3P9KTyM0SNwR7ZSVbwdqoQe47V-nxDXvvZWJTqYIBUk';
+                    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                    console.log('✅ Supabase initialized');
+                } else {
+                    console.warn('⚠️ Supabase not loaded - using offline mode');
+                }
+            } catch (err) {
+                console.warn('⚠️ Supabase initialization failed:', err);
+            }
+            
             const form = document.getElementById('emailForm');
             const emailInput = document.getElementById('emailInput');
             const submitBtn = document.getElementById('submitBtn');
@@ -2617,9 +1769,9 @@
                 return;
             }
 
-            // Define showMessage function FIRST
+            // Define showMessage function
             function showMessage(text, type) {
-                console.log(`📢 Showing message: ${text} (${type})`);
+                console.log(`📢 showMessage called: "${text}" (${type})`);
                 message.textContent = text;
                 message.className = `message ${type} show`;
                 
@@ -2630,8 +1782,10 @@
 
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                console.log('📝 Form submitted!');
                 
                 const email = emailInput.value.trim();
+                console.log('📧 Email value:', email);
                 
                 if (!email) {
                     showMessage('Please enter your email', 'error');
@@ -2643,12 +1797,11 @@
 
                 try {
                     if (!supabase) {
-                        // Fallback if Supabase isn't available
-                        console.log('📧 Email submitted (offline mode):', email);
+                        console.log('📧 Offline mode - email:', email);
                         showMessage('✓ Thanks! We\'ll reach out soon.', 'success');
                         emailInput.value = '';
                     } else {
-                        console.log('📧 Submitting email to Supabase:', email);
+                        console.log('📧 Submitting to Supabase:', email);
                         const { data, error } = await supabase
                             .from('kv_store_6da1cc8e')
                             .insert([
@@ -2671,7 +1824,7 @@
                                 throw error;
                             }
                         } else {
-                            console.log('✅ Successfully added to waitlist!', data);
+                            console.log('✅ Successfully added!', data);
                             showMessage('✓ Success! We\'ll notify you when we launch.', 'success');
                             emailInput.value = '';
                         }
@@ -2687,6 +1840,80 @@
             });
 
             console.log('✅ Waitlist form handler initialized!');
+        });
+
+        // ========================================
+        // NAVIGATION BUTTON EVENT LISTENERS
+        // ========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('🔗 Setting up navigation button listeners...');
+            
+            // Get all navigation buttons
+            const faqBtn = document.getElementById('faqNavBtn');
+            const contactBtn = document.getElementById('contactNavBtn');
+            const privacyBtn = document.getElementById('privacyNavBtn');
+            
+            // Add click listeners
+            if (faqBtn) {
+                faqBtn.addEventListener('click', () => {
+                    console.log('🖱️ FAQ button clicked!');
+                    showPage('faq');
+                });
+                console.log('  ✅ FAQ button listener added');
+            } else {
+                console.error('  ❌ FAQ button not found!');
+            }
+            
+            if (contactBtn) {
+                contactBtn.addEventListener('click', () => {
+                    console.log('🖱️ Contact button clicked!');
+                    showPage('contact');
+                });
+                console.log('  ✅ Contact button listener added');
+            } else {
+                console.error('  ❌ Contact button not found!');
+            }
+            
+            if (privacyBtn) {
+                privacyBtn.addEventListener('click', () => {
+                    console.log('🖱️ Privacy button clicked!');
+                    showPage('privacy');
+                });
+                console.log('  ✅ Privacy button listener added');
+            } else {
+                console.error('  ❌ Privacy button not found!');
+            }
+            
+            // Add back button listeners
+            const faqBackBtn = document.getElementById('faqBackBtn');
+            const contactBackBtn = document.getElementById('contactBackBtn');
+            const privacyBackBtn = document.getElementById('privacyBackBtn');
+            
+            if (faqBackBtn) {
+                faqBackBtn.addEventListener('click', () => {
+                    console.log('🖱️ FAQ back button clicked!');
+                    showHome();
+                });
+                console.log('  ✅ FAQ back button listener added');
+            }
+            
+            if (contactBackBtn) {
+                contactBackBtn.addEventListener('click', () => {
+                    console.log('🖱️ Contact back button clicked!');
+                    showHome();
+                });
+                console.log('  ✅ Contact back button listener added');
+            }
+            
+            if (privacyBackBtn) {
+                privacyBackBtn.addEventListener('click', () => {
+                    console.log('🖱️ Privacy back button clicked!');
+                    showHome();
+                });
+                console.log('  ✅ Privacy back button listener added');
+            }
+            
+            console.log('✅ Navigation button listeners initialized!');
         });
 
         // ========================================
