@@ -1884,6 +1884,39 @@
                     const SUPABASE_URL = 'https://kmdocdynoneoedyaphjg.supabase.co';
                     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImttZG9jZHlub25lb2VkeWFwaGpnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3ODQxMzEsImV4cCI6MjA4MzM2MDEzMX0.6dd05WiozOZaasX0bBbx3KmNDgnwk1ytRqEL20HFJj8';
                     
+                    // First, check if email already exists
+                    console.log('🔍 Checking for duplicate email...');
+                    const checkResponse = await fetch(`${SUPABASE_URL}/functions/v1/make-server-6da1cc8e/kv/getByPrefix`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                        },
+                        body: JSON.stringify({
+                            prefix: 'waitlist:'
+                        })
+                    });
+
+                    if (checkResponse.ok) {
+                        const checkResult = await checkResponse.json();
+                        if (checkResult.success && checkResult.data) {
+                            // Check if email already exists in any of the waitlist entries
+                            const emailExists = checkResult.data.some(entry => 
+                                entry.value && entry.value.email && entry.value.email.toLowerCase() === email.toLowerCase()
+                            );
+                            
+                            if (emailExists) {
+                                console.log('⚠️ Email already exists in waitlist');
+                                showMessage('✓ You\'re already on the waitlist! We\'ll notify you when we launch.', 'success');
+                                emailInput.value = '';
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = 'Join Waitlist';
+                                return;
+                            }
+                        }
+                    }
+                    
+                    // If email doesn't exist, proceed to add it
                     const response = await fetch(`${SUPABASE_URL}/functions/v1/make-server-6da1cc8e/kv/set`, {
                         method: 'POST',
                         headers: {
