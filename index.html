@@ -1886,7 +1886,7 @@
                     
                     // First, check if email already exists
                     console.log('🔍 Checking for duplicate email...');
-                    const checkResponse = await fetch(`${SUPABASE_URL}/functions/v1/make-server-6da1cc8e/kv/getByPrefix`, {
+                    const checkResponse = await fetch(`${SUPABASE_URL}/functions/v1/make-server-6da1cc8e/kv/get-by-prefix`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -1899,9 +1899,10 @@
 
                     if (checkResponse.ok) {
                         const checkResult = await checkResponse.json();
-                        if (checkResult.success && checkResult.data) {
+                        console.log('📊 Check result:', checkResult);
+                        if (checkResult.success && checkResult.values) {
                             // Check if email already exists in any of the waitlist entries
-                            const emailExists = checkResult.data.some(entry => 
+                            const emailExists = checkResult.values.some(entry => 
                                 entry.value && entry.value.email && entry.value.email.toLowerCase() === email.toLowerCase()
                             );
                             
