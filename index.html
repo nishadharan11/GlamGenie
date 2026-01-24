@@ -107,10 +107,10 @@
         }
 
         .logo-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 24px;
-            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6));
+            width: 280px;
+            height: 224px;
+            margin: 0 auto 12px;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
             animation: float 3s ease-in-out infinite;
         }
 
@@ -288,6 +288,7 @@
             border-radius: 16px;
             padding: 32px;
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .feature-card:hover {
@@ -299,6 +300,7 @@
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 16px;
+            text-align: center;
         }
 
         .feature-card h3 {
@@ -333,6 +335,7 @@
             border-radius: 16px;
             padding: 28px;
             transition: all 0.3s ease;
+            text-align: center;
         }
 
         .service-card:hover {
@@ -506,6 +509,14 @@
             padding: 80px 24px;
             max-width: 900px;
             margin: 0 auto;
+        }
+
+        .secondary-logo {
+            width: 240px;
+            height: auto;
+            margin: 0 auto 32px;
+            display: block;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
         }
 
         .back-btn {
@@ -721,7 +732,6 @@
                     <div class="logo-icon">
                         <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamGenie.png" alt="Glam Genie Logo">
                     </div>
-                    <h1>Glam Genie</h1>
                     <p class="tagline">India's First Subscription-Based Beauty Marketplace</p>
                     <p class="location">🇮🇳 Premium Beauty Services at Your Doorstep | Pan-India</p>
                     
@@ -787,33 +797,39 @@
                 <div class="services-grid">
                     <div class="service-card">
                         <h4>Bridal Makeup</h4>
-                        <div class="service-price">₹8,000+</div>
                         <p>Complete bridal look with airbrush makeup and styling</p>
                     </div>
                     <div class="service-card">
                         <h4>Party Makeup</h4>
-                        <div class="service-price">₹2,500+</div>
                         <p>Glamorous party-ready makeup for any occasion</p>
                     </div>
                     <div class="service-card">
                         <h4>Hair Styling</h4>
-                        <div class="service-price">₹1,500+</div>
                         <p>Professional hair styling, cuts, and treatments</p>
                     </div>
                     <div class="service-card">
                         <h4>Mehendi Design</h4>
-                        <div class="service-price">₹999+</div>
                         <p>Beautiful traditional and modern mehendi designs</p>
                     </div>
                     <div class="service-card">
                         <h4>Saree Draping</h4>
-                        <div class="service-price">₹1,000+</div>
-                        <p>Expert saree draping in various styles</p>
+                        <p>Expert saree draping in various regional styles</p>
                     </div>
                     <div class="service-card">
                         <h4>Photoshoot Makeup</h4>
-                        <div class="service-price">₹3,500+</div>
                         <p>Camera-ready makeup for professional photoshoots</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Pre-Wedding Shoots</h4>
+                        <p>Special makeup and styling for pre-wedding photoshoots</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Skin Care Treatment</h4>
+                        <p>Professional facials and skin rejuvenation treatments</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Nail Art & Spa</h4>
+                        <p>Creative nail designs and relaxing manicure services</p>
                     </div>
                 </div>
             </section>
@@ -842,7 +858,7 @@
         <!-- FAQ PAGE -->
         <div id="faq" class="page">
             <div class="secondary-page">
-                <button class="back-btn" id="faqBackBtn">← Back to Home</button>
+                <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamGenie.png" alt="Glam Genie" class="secondary-logo">
                 <h1 class="page-title">Frequently Asked Questions</h1>
                 
                 <div class="faq-item" onclick="toggleFAQ(this)">
@@ -904,13 +920,18 @@
                         Your satisfaction is our priority. We have a customer support team ready to address any concerns. We also have a rating and review system to maintain service quality standards.
                     </div>
                 </div>
+                
+                <!-- Bottom Back Button -->
+                <div style="text-align: center; margin-top: 60px;">
+                    <button class="back-btn" onclick="showHome()" style="margin: 0 auto;">← Back to Home</button>
+                </div>
             </div>
         </div>
 
         <!-- CONTACT PAGE -->
         <div id="contact" class="page">
             <div class="secondary-page">
-                <button class="back-btn" id="contactBackBtn">← Back to Home</button>
+                <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamGenie.png" alt="Glam Genie" class="secondary-logo">
                 <h1 class="page-title">Contact Us</h1>
                 
                 <div class="contact-form">
@@ -928,13 +949,18 @@
                     <p style="margin-bottom: 12px;">📱 WhatsApp: +91 XXXXX XXXXX</p>
                     <p>🕒 Support Hours: Mon-Sat, 9 AM - 8 PM IST</p>
                 </div>
+                
+                <!-- Bottom Back Button -->
+                <div style="text-align: center; margin-top: 60px;">
+                    <button class="back-btn" onclick="showHome()" style="margin: 0 auto;">← Back to Home</button>
+                </div>
             </div>
         </div>
 
         <!-- PRIVACY PAGE -->
         <div id="privacy" class="page">
             <div class="secondary-page">
-                <button class="back-btn" id="privacyBackBtn">← Back to Home</button>
+                <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamGenie.png" alt="Glam Genie" class="secondary-logo">
                 <h1 class="page-title">Privacy Policy</h1>
                 
                 <div class="privacy-content">
@@ -1002,6 +1028,11 @@
                     <h2>Contact Us</h2>
                     <p>If you have questions or concerns about this Privacy Policy, please contact us at:</p>
                     <p>Email: privacy@glamgenie.in</p>
+                </div>
+                
+                <!-- Bottom Back Button -->
+                <div style="text-align: center; margin-top: 60px;">
+                    <button class="back-btn" onclick="showHome()" style="margin: 0 auto;">← Back to Home</button>
                 </div>
             </div>
         </div>
