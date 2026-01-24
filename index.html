@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glam Genie - Beauty Services at Your Doorstep | India</title>
-    <meta name="description" content="Book verified makeup artists across India. Premium beauty services at your home. Zero commission for artists!">
+    <title>Glam Genie - Premium Beauty Services at Your Doorstep</title>
+    <meta name="description" content="India's first subscription-based beauty marketplace. Zero commissions for artists. Book makeup, hair styling, mehendi and more at your doorstep.">
+    
     <style>
         * {
             margin: 0;
@@ -13,1814 +14,1097 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SF Pro Display', sans-serif;
-            overflow-x: hidden;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             color: white;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #1e1b4b 0%, #581c87 50%, #be185d 100%);
             min-height: 100vh;
         }
 
-        /* Fixed Background Layers */
-        .fixed-background {
+        /* Starry Background */
+        .stars-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
+            overflow: hidden;
+            z-index: 0;
             pointer-events: none;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #1e1b4b 0%, #581c87 50%, #be185d 100%);
-        }
-
-        /* Starry Background Layer */
-        .stars-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        /* Main Container - Adjusted for fixed bg */
-        .hero-container {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: transparent;
         }
 
         .star {
             position: absolute;
             background: white;
             border-radius: 50%;
-            animation: subtleTwinkle var(--duration) ease-in-out infinite;
-            animation-delay: var(--delay);
-            box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+            animation: twinkle var(--duration, 3s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
         }
 
-        @keyframes subtleTwinkle {
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            animation: shootingStar 2s ease-out forwards;
+        }
+
+        @keyframes twinkle {
             0%, 100% {
                 opacity: 0.3;
                 transform: scale(1);
             }
             50% {
-                opacity: 0.9;
+                opacity: 1;
                 transform: scale(1.2);
             }
         }
 
-        /* Shooting Star */
-        .shooting-star {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, white, transparent);
-            width: 100px;
-            opacity: 0;
-            z-index: 1;
-            pointer-events: none;
-            transform: rotate(-45deg);
-            animation: shoot 2s ease-out forwards;
-        }
-
-        @keyframes shoot {
+        @keyframes shootingStar {
             0% {
-                transform: translate(0, 0) rotate(-45deg) scale(0.5);
                 opacity: 0;
+                transform: translateX(0) translateY(0);
             }
             10% {
                 opacity: 1;
-                transform: translate(-20px, 20px) rotate(-45deg) scale(1);
             }
             100% {
-                transform: translate(-300px, 300px) rotate(-45deg) scale(0.5);
                 opacity: 0;
+                transform: translateX(-300px) translateY(300px);
             }
         }
 
-        /* Sparkle stars - larger and more prominent */
-        .star-sparkle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: sparkle var(--duration) ease-in-out infinite;
-            animation-delay: var(--delay);
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 10px rgba(168, 85, 247, 0.3);
-        }
-
-        @keyframes sparkle {
-            0%, 100% {
-                opacity: 0;
-                transform: scale(0.5);
-                box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.5);
-                box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 15px rgba(168, 85, 247, 0.5);
-            }
-        }
-
-        /* Ambient Glow Pulse */
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(1.1); }
-        }
-
-        /* Subtle Ambient Glow */
-        .ambient-glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.2;
-            z-index: 2;
-            pointer-events: none;
-            animation: glowPulse 8s ease-in-out infinite;
-        }
-
-        .glow-top-right {
-            top: -150px;
-            right: -150px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%);
-        }
-
-        .glow-bottom-left {
-            bottom: -150px;
-            left: -150px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
-            animation-delay: 4s;
-        }
-        
-        /* NEW: Additional ambient glows for more depth */
-        .glow-center {
-            position: absolute;
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.15;
-            z-index: 2;
-            pointer-events: none;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(190, 24, 93, 0.35) 0%, transparent 70%);
-            animation: glowPulse 10s ease-in-out infinite;
-            animation-delay: 2s;
-        }
-
-        /* Content */
-        .content {
+        /* Page Container */
+        .page-container {
             position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 1200px;
-            padding: 60px 24px;
-            color: white;
+            z-index: 1;
         }
 
-        /* Top Badge */
-        .badge {
-            display: inline-flex;
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            letter-spacing: 0.5px;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            position: relative;
         }
 
-        .badge:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 25px rgba(168, 85, 247, 0.2);
-        }
-
-        .badge-icon {
-            font-size: 0.9rem;
-        }
-
-        /* Logo Icon */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .hero-container {
+            max-width: 800px;
+            width: 100%;
         }
 
         .logo-icon {
-            width: 600px;
-            max-width: 100%;
-            height: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 120px;
+            height: 120px;
             margin: 0 auto 24px;
-            animation: float 6s ease-in-out infinite;
-            padding: 0;
-            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
+            filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.6));
+            animation: float 3s ease-in-out infinite;
         }
 
         .logo-icon img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
         }
 
-        /* Main Heading */
-        .main-heading {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.2;
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #f97316, #ec4899, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
             letter-spacing: -0.03em;
-            margin-bottom: 20px;
-            color: #ffffff;
         }
 
-        /* Tagline */
         .tagline {
             font-size: 1.5rem;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 12px;
             font-weight: 500;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.01em;
         }
 
-        /* Email Form */
-        .email-form {
-            display: flex;
-            gap: 12px;
-            max-width: 520px;
-            margin: 0 auto;
+        .location {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 48px;
         }
 
-        .email-input {
-            flex: 1;
-            padding: 16px 24px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        /* Waitlist Box */
+        .waitlist-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 0 auto 40px;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .waitlist-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .waitlist-box p {
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 24px;
+            font-size: 1.05rem;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
             font-size: 1rem;
-            color: #1f2937;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
-        .email-input::placeholder {
-            color: rgba(31, 41, 55, 0.6);
-        }
-
-        .email-input:focus {
+        input[type="email"]:focus {
             outline: none;
-            background: #ffffff;
-            border-color: rgba(168, 85, 247, 0.6);
-            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
-            transform: translateY(-1px);
+            border-color: rgba(168, 85, 247, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
         }
 
-        .submit-btn {
+        input[type="email"]::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        button {
+            width: 100%;
             padding: 16px 32px;
-            background: linear-gradient(90deg, #c084fc 0%, #e879f9 50%, #f472b6 100%);
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            color: white;
             border: none;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: white;
             cursor: pointer;
             transition: all 0.3s ease;
-            white-space: nowrap;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 15px rgba(232, 121, 249, 0.4);
+            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
         }
 
-        .submit-btn:hover {
+        button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(232, 121, 249, 0.6);
-            filter: brightness(1.05);
+            box-shadow: 0 6px 30px rgba(236, 72, 153, 0.6);
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-btn:disabled {
+        button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
 
-        /* Message */
         .message {
-            display: none;
-            padding: 16px 32px;
-            border-radius: 14px;
-            margin-top: 24px;
-            font-size: 1rem;
-            animation: fadeIn 0.4s ease-out;
-            text-align: center;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
         }
 
         .message.show {
-            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .message.success {
-            background: rgba(16, 185, 129, 0.25);
-            border: 2px solid rgba(16, 185, 129, 0.6);
-            color: #a7f3d0;
-            font-weight: 600;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6ee7b7;
         }
 
         .message.error {
-            background: rgba(239, 68, 68, 0.25);
-            border: 2px solid rgba(239, 68, 68, 0.6);
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
             color: #fca5a5;
-            font-weight: 600;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 11;
-            color: white;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .scroll-indicator:hover {
-            opacity: 1;
-        }
-
-        .scroll-text {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .scroll-arrow {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-align: center;
         }
 
         /* Features Section */
         .features-section {
-            position: relative;
-            padding: 120px 24px;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
+            padding: 100px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 16px;
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 64px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
         }
 
         .feature-card {
-            padding: 40px 32px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 32px;
             transition: all 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(168, 85, 247, 0.4);
         }
 
         .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: block;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            font-size: 2.5rem;
+            margin-bottom: 16px;
         }
 
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .feature-card h3 {
+            font-size: 1.4rem;
             margin-bottom: 12px;
-            color: #ffffff;
-        }
-
-        .feature-desc {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Services Section */
-        .services-section {
-            padding: 120px 24px;
-            background: transparent;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            padding: 36px 28px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .service-card.active {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(236, 72, 153, 0.4);
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .service-title {
-            font-size: 1.25rem;
-            margin-bottom: 0;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .service-subtitle {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-            margin-top: 6px;
-            font-style: italic;
-        }
-
-        .service-expand-icon {
-            display: inline-block;
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-
-        .service-card.active .service-expand-icon {
-            transform: rotate(180deg);
-        }
-
-        .sub-services {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            margin-top: 0;
-        }
-
-        .service-card.active .sub-services {
-            max-height: 800px;
-            margin-top: 24px;
-        }
-
-        .sub-services-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: left;
-        }
-
-        .sub-service-item {
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.95rem;
-            line-height: 1.5;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sub-service-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(236, 72, 153, 0.3);
-            color: #ffffff;
-            transform: translateX(4px);
-        }
-
-        .sub-service-item::before {
-            content: '•';
-            color: #f472b6;
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-right: 8px;
-        }
-
-        /* Download Section */
-        .download-section {
-            padding: 120px 24px;
-            background: transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .download-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .download-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 48px;
-        }
-
-        .coming-soon-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 32px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 40px;
-            transition: all 0.3s ease;
-        }
-
-        .coming-soon-badge:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .app-store-btn {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px 32px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            font-size: 1rem;
-            color: #1f2937;
-            cursor: not-allowed;
-            transition: all 0.3s ease;
-            opacity: 0.7;
-            min-width: 200px;
-        }
-
-        .app-store-btn:hover {
-            opacity: 0.85;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
-        }
-
-        .app-icon {
-            width: 32px;
-            height: 32px;
-        }
-
-        .app-text {
-            text-align: left;
-        }
-
-        .app-text-small {
-            font-size: 0.75rem;
-            color: #6b7280;
-            display: block;
-        }
-
-        .app-text-large {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1f2937;
-            display: block;
-        }
-
-        .notify-text {
-            margin-top: 32px;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 60px 24px 40px;
-            text-align: center;
-            background: transparent;
-            color: white;
-            position: relative;
-        }
-
-        /* Footer Navigation Links */
-        .footer-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 32px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-nav-link:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(236, 72, 153, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.3);
-        }
-
-        .footer-nav-separator {
-            display: none;
-        }
-
-        .copyright {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-creator {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .footer-creator:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(236, 72, 153, 0.4);
-            transform: scale(1.03);
-        }
-
-        .footer-sparkle {
-            font-size: 1rem;
-        }
-
-        .footer-creator-name {
-            background: linear-gradient(135deg, #a78bfa, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .footer-heart {
-            font-size: 1rem;
-            color: #ec4899;
-        }
-
-        .tagline-footer {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-            font-style: italic;
-            margin-top: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Page Navigation */
-        .page-container {
-            display: none;
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        /* Back Button */
-        .back-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            color: rgba(255, 255, 255, 0.9);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 24px;
-            font-size: 0.9rem;
-        }
-
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.15);
             color: white;
         }
 
-        /* FAQ Page Styles */
-        .faq-page {
-            min-height: 100vh;
-            padding: 40px 24px 80px;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-
-        .page-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #a78bfa, #ec4899, #fb7185);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 2.5rem;
-            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.5);
-        }
-
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 16px;
-        }
-
-        .page-subtitle {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .faq-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-category {
-            margin-bottom: 48px;
-        }
-
-        .faq-category-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .faq-question {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(236, 72, 153, 0.3);
-        }
-
-        .faq-question-header {
-            padding: 20px 24px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: white;
-        }
-
-        .faq-question-icon {
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .faq-question.active .faq-question-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .faq-question.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-answer-content {
-            padding: 0 24px 24px;
+        .feature-card p {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
         }
 
-        /* Contact Page Styles */
-        .contact-page {
-            min-height: 100vh;
-            padding: 40px 24px 80px;
+        /* Services Section */
+        .services-section {
+            padding: 100px 24px;
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .contact-content {
+        .services-grid {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
         }
 
-        @media (min-width: 768px) {
-            .contact-content {
-                grid-template-columns: 1fr 1fr;
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .service-price {
+            color: #fbbf24;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 24px 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav button {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+            width: auto;
+        }
+
+        .footer-nav button:hover {
+            color: white;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .dreamed-by {
+            position: relative;
+            display: inline-block;
+            padding: 20px 40px;
+            margin: 32px 0 16px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            animation: float 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .dreamed-by:hover {
+            transform: scale(1.05);
+            border-color: rgba(236, 72, 153, 0.5);
+        }
+
+        .dreamed-by::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #f43f5e);
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+            border-radius: 50px;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.05);
             }
         }
 
-        .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-label {
-            display: block;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: rgba(236, 72, 153, 0.5);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #a855f7, #ec4899, #f43f5e);
-            border: none;
-            border-radius: 16px;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.5);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 50px rgba(236, 72, 153, 0.6);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-
-        .contact-info-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-
-        .contact-info-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 16px;
+        .dreamed-by-content {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
-        .contact-info-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
+        .sparkle-icon {
+            display: inline-block;
+            animation: rotate 2s linear infinite;
         }
 
-        .contact-info-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        .contact-info-label {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 6px;
+        .dreamed-by-text {
+            background: linear-gradient(135deg, #fbbf24, #f97316, #ec4899, #a855f7);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s linear infinite;
         }
 
-        .contact-info-value {
-            font-size: 1rem;
-            color: white;
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
         }
 
-        /* Privacy Page Styles */
-        .privacy-page {
-            min-height: 100vh;
-            padding: 40px 24px 80px;
+        .heart-icon {
+            display: inline-block;
+            animation: heartbeat 1.5s ease-in-out infinite;
         }
 
-        .privacy-content {
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .tagline-bottom {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem;
+            margin-top: 24px;
+        }
+
+        /* Secondary Pages */
+        .secondary-page {
+            padding: 80px 24px;
             max-width: 900px;
             margin: 0 auto;
         }
 
-        .privacy-section {
-            margin-bottom: 40px;
-        }
-
-        .privacy-section-title {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            margin-bottom: 16px;
-            display: flex;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-bottom: 32px;
+            width: auto;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
 
-        .privacy-text {
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Contact Page */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: rgba(168, 85, 247, 0.5);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+
+        /* Privacy Page */
+        .privacy-content {
             color: rgba(255, 255, 255, 0.75);
             line-height: 1.8;
+        }
+
+        .privacy-content h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 32px 0 16px;
+        }
+
+        .privacy-content h3 {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+        }
+
+        .privacy-content p {
             margin-bottom: 16px;
         }
 
-        .privacy-list {
-            list-style: none;
-            padding: 0;
+        .privacy-content ul {
+            margin: 16px 0 16px 24px;
         }
 
-        .privacy-list li {
-            color: rgba(255, 255, 255, 0.75);
-            padding: 8px 0 8px 24px;
-            position: relative;
-        }
-
-        .privacy-list li:before {
-            content: '•';
-            position: absolute;
-            left: 8px;
-            color: #ec4899;
-            font-weight: bold;
+        .privacy-content li {
+            margin-bottom: 8px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .main-heading {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .waitlist-box {
+                padding: 32px 24px;
+            }
+
+            .features-grid,
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
                 font-size: 2.5rem;
+            }
+
+            .logo-icon {
+                font-size: 4rem;
             }
 
             .tagline {
                 font-size: 1.1rem;
             }
 
-            .email-form {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .submit-btn {
-                width: 100%;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .download-buttons {
-                flex-direction: column;
-            }
-
-            /* Mobile adjustments */
-            .logo-icon {
-                width: 90%;
-                max-width: 400px;
-                height: auto;
-                padding: 0;
-                margin-bottom: 20px;
-            }
-
-            /* Badge */
-            .badge {
-                font-size: 0.75rem;
-                padding: 8px 18px;
-                margin-bottom: 32px;
-            }
-
-            /* Message */
-            .message {
-                padding: 14px 20px;
-                font-size: 0.9rem;
-                margin-top: 16px;
-            }
-
-            /* Scroll Indicator */
-            .scroll-indicator {
-                bottom: 20px;
-            }
-
-            /* Page Title */
-            .page-title {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .services-grid {
-                grid-template-columns: 1fr;
+            .waitlist-box h3 {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Fixed Starry Background -->
-    <div class="fixed-background">
-        <div class="stars-layer" id="starsLayer"></div>
-        <div class="ambient-glow glow-top-right"></div>
-        <div class="ambient-glow glow-bottom-left"></div>
-        <div class="glow-center"></div>
-    </div>
+    <!-- Starry Background -->
+    <div class="stars-container" id="starsContainer"></div>
 
-    <!-- STARS SCRIPT - Runs immediately after starsLayer is created -->
-    <script>
-    (function() {
-        'use strict';
-        console.log('⭐ Stars script loading...');
-        
-        function generateStars() {
-            const starsLayer = document.getElementById('starsLayer');
-            if (!starsLayer) {
-                console.error('❌ starsLayer not found!');
-                return;
-            }
-            
-            const regularStars = 130;
-            const sparkleStars = 20;
-
-            for (let i = 0; i < regularStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 2 + 0.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.setProperty('--duration', (Math.random() * 4 + 4) + 's');
-                star.style.setProperty('--delay', Math.random() * 4 + 's');
-                starsLayer.appendChild(star);
-            }
-
-            for (let i = 0; i < sparkleStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star-sparkle';
-                const size = Math.random() * 2.5 + 1.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.setProperty('--duration', (Math.random() * 3 + 5) + 's');
-                star.style.setProperty('--delay', Math.random() * 5 + 's');
-                starsLayer.appendChild(star);
-            }
-            
-            console.log('✨ Stars created:', regularStars + sparkleStars);
-        }
-
-        function startShootingStars() {
-            const starsLayer = document.getElementById('starsLayer');
-            if (!starsLayer) return;
-            
-            setInterval(() => {
-                const star = document.createElement('div');
-                star.className = 'shooting-star';
-                star.style.top = (Math.random() * 50) + '%';
-                star.style.left = (Math.random() * 100) + '%';
-                starsLayer.appendChild(star);
-                setTimeout(() => star.remove(), 2000);
-            }, 3000);
-            
-            console.log('🌠 Shooting stars active!');
-        }
-
-        // Run immediately
-        generateStars();
-        startShootingStars();
-    })();
-    </script>
-
-    <!-- Hero Section -->
-    <div class="hero-container">
-        <div class="content">
-            <!-- Logo Icon -->
-            <div class="logo-icon">
-                <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamgeineW.png" alt="Glam Genie Logo" id="logo-img" />
-            </div>
-
-            <!-- Badge Below Logo -->
-            <div class="badge">
-                <span class="badge-icon">✨</span>
-                <span>Launching Soon Across India</span>
-            </div>
-
-            <!-- Tagline -->
-            <p class="tagline">Premium beauty artists at your doorstep.<br>Zero commission. Pure magic.</p>
-
-            <!-- Email Form -->
-            <form class="email-form" id="emailForm">
-                <input 
-                    type="email" 
-                    class="email-input" 
-                    id="emailInput"
-                    placeholder="Enter your email" 
-                    required
-                />
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    Join Waitlist
-                </button>
-            </form>
-
-            <!-- Message -->
-            <div class="message" id="message"></div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <div class="scroll-text">Scroll to explore</div>
-            <div class="scroll-arrow">↓</div>
-        </div>
-    </div>
-
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <h2 class="section-title">Why Artists Love Us</h2>
-        <p class="section-subtitle">Empowering makeup artists with fair pricing and complete freedom</p>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🎨</span>
-                <h3 class="feature-title">Zero Commission</h3>
-                <p class="feature-desc">Keep 100% of your earnings. We charge artists a flat subscription, not a percentage of their hard work.</p>
-            </div>
-            
-            <div class="feature-card">
-                <span class="feature-icon">⏰</span>
-                <h3 class="feature-title">Flexible Schedule</h3>
-                <p class="feature-desc">Work when you want. Set your own hours and availability. Complete control over your calendar.</p>
-            </div>
-            
-            <div class="feature-card">
-                <span class="feature-icon">✨</span>
-                <h3 class="feature-title">Premium Clients</h3>
-                <p class="feature-desc">Connect with clients who value quality. Build your brand and grow your business with verified bookings.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section">
-        <h2 class="section-title">Popular Services</h2>
-        <p class="section-subtitle">Premium beauty services coming soon to your doorstep</p>
-        
-        <div class="services-grid">
-            <!-- Makeup (Instant Glam) -->
-            <div class="service-card">
-                <span class="service-icon">💄</span>
-                <h3 class="service-title">Makeup </h3>
-            </div>
-            
-            <!-- Hair Studio -->
-            <div class="service-card">
-                <span class="service-icon">💇</span>
-                <h3 class="service-title">Hair Styling</h3>
-            </div>
-            
-            <!-- Draping (Saree & Dupatta) -->
-            <div class="service-card">
-                <span class="service-icon">🥻</span>
-                <h3 class="service-title">Draping Services</h3>
-            </div>
-            
-            <!-- Combo Packages (Best Value) -->
-            <div class="service-card">
-                <span class="service-icon">✨</span>
-                <h3 class="service-title">Combo Packages</h3>
-                <p class="service-subtitle">Best Value</p>
-            </div>
-            
-            <!-- Bridal & Pre-Bridal -->
-            <div class="service-card">
-                <span class="service-icon">💍</span>
-                <h3 class="service-title">Bridal & Pre-Bridal</h3>
-                <p class="service-subtitle">Advance Booking options</p>
-            </div>
-            
-            <!-- Grooming (Add-Ons) -->
-            <div class="service-card">
-                <span class="service-icon">🌟</span>
-                <h3 class="service-title">Grooming</h3>
-                <p class="service-subtitle">Add-Ons</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section class="download-section">
-        <div class="download-content">
-            <h2 class="download-title">Get the App</h2>
-            <p class="download-subtitle">Book beauty services in minutes. Available for iOS and Android.</p>
-            
-            <div class="coming-soon-badge">
-                <span>🚀</span>
-                <span>Coming Soon</span>
-            </div>
-            
-            <div class="download-buttons">
-                <div class="app-store-btn">
-                    <svg class="app-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    <div class="app-text">
-                        <span class="app-text-small">Download on the</span>
-                        <span class="app-text-large">App Store</span>
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-container">
+                    <div class="logo-icon">
+                        <img src="https://kmdocdynoneoedyaphjg.supabase.co/storage/v1/object/public/Storage/GlamGenie.png" alt="Glam Genie Logo">
+                    </div>
+                    <h1>Glam Genie</h1>
+                    <p class="tagline">India's First Subscription-Based Beauty Marketplace</p>
+                    <p class="location">🇮🇳 Premium Beauty Services at Your Doorstep | Pan-India</p>
+                    
+                    <div class="waitlist-box">
+                        <h3>Join the Waitlist ✨</h3>
+                        <p>Be the first to experience the future of beauty services</p>
+                        <form id="emailForm">
+                            <div class="form-group">
+                                <input 
+                                    type="email" 
+                                    id="emailInput" 
+                                    placeholder="Enter your email" 
+                                    required
+                                />
+                            </div>
+                            <button type="submit" id="submitBtn">Join Waitlist</button>
+                            <div id="message" class="message"></div>
+                        </form>
                     </div>
                 </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2 class="section-title">Why Choose Glam Genie?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏠</div>
+                        <h3>Doorstep Service</h3>
+                        <p>Professional beauty services delivered to your home across India</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📸</div>
+                        <h3>Artist Portfolios</h3>
+                        <p>Browse stunning portfolios and choose artists that match your style</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Artists Keep 100%</h3>
+                        <p>Zero commission model - artists keep all their earnings</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⭐</div>
+                        <h3>Verified Artists</h3>
+                        <p>All artists are background-verified and professionally trained</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Points & Rewards</h3>
+                        <p>Earn points on every booking and redeem for exclusive benefits</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Safety First</h3>
+                        <p>Zero tolerance policy for misbehavior with robust safety measures</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services-section">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h4>Bridal Makeup</h4>
+                        <div class="service-price">₹8,000+</div>
+                        <p>Complete bridal look with airbrush makeup and styling</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Party Makeup</h4>
+                        <div class="service-price">₹2,500+</div>
+                        <p>Glamorous party-ready makeup for any occasion</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Hair Styling</h4>
+                        <div class="service-price">₹1,500+</div>
+                        <p>Professional hair styling, cuts, and treatments</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Mehendi Design</h4>
+                        <div class="service-price">₹999+</div>
+                        <p>Beautiful traditional and modern mehendi designs</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Saree Draping</h4>
+                        <div class="service-price">₹1,000+</div>
+                        <p>Expert saree draping in various styles</p>
+                    </div>
+                    <div class="service-card">
+                        <h4>Photoshoot Makeup</h4>
+                        <div class="service-price">₹3,500+</div>
+                        <p>Camera-ready makeup for professional photoshoots</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-nav">
+                    <button id="faqNavBtn">FAQ</button>
+                    <button id="contactNavBtn">Contact</button>
+                    <button id="privacyNavBtn">Privacy Policy</button>
+                </div>
+
+                <div class="dreamed-by">
+                    <div class="dreamed-by-content">
+                        <span class="sparkle-icon">✨</span>
+                        <span class="dreamed-by-text">Dreamed by Nisha</span>
+                        <span class="heart-icon">💖</span>
+                    </div>
+                    <div class="tagline-bottom">Where beauty meets technology</div>
+                </div>
+
+                <p class="copyright">&copy; 2026 Glam Genie. All rights reserved.</p>
+            </footer>
+        </div>
+
+        <!-- FAQ PAGE -->
+        <div id="faq" class="page">
+            <div class="secondary-page">
+                <button class="back-btn" id="faqBackBtn">← Back to Home</button>
+                <h1 class="page-title">Frequently Asked Questions</h1>
                 
-                <div class="app-store-btn">
-                    <svg class="app-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                    </svg>
-                    <div class="app-text">
-                        <span class="app-text-small">Get it on</span>
-                        <span class="app-text-large">Google Play</span>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        What is Glam Genie?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Glam Genie is India's first subscription-based beauty marketplace connecting customers with verified beauty professionals for doorstep services. We offer a zero-commission model for artists, ensuring they keep 100% of their earnings.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        How does the subscription model work?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Artists pay a monthly subscription to list their services on our platform. They keep 100% of their service fees - no commissions deducted. Customers can browse, book, and pay directly for services.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        Are the artists verified?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Yes! All artists undergo a thorough background verification process including identity checks, certification validation, and portfolio review before being approved on our platform.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        Which areas do you serve?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        We are expanding across India! Starting with major metro cities, we're rapidly growing to cover tier 2 and tier 3 cities. Check the app for service availability in your area.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        How do I book a service?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Simply browse artist portfolios, select your preferred artist and service, choose a date and time, and confirm your booking. You'll receive instant confirmation and artist details.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <button class="faq-question">
+                        What if I'm not satisfied with the service?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Your satisfaction is our priority. We have a customer support team ready to address any concerns. We also have a rating and review system to maintain service quality standards.
                     </div>
                 </div>
             </div>
-            
-            <p class="notify-text">Join the waitlist to get notified when we launch!</p>
-        </div>
-    </section>
-
-    <!-- FAQ Page -->
-    <div class="page-container faq-page" id="faq">
-        <button class="back-btn" id="faqBackBtn">
-            <span>←</span>
-            <span>Back to Home</span>
-        </button>
-
-        <div class="page-header">
-            <div class="page-icon">❓</div>
-            <h1 class="page-title">Frequently Asked Questions</h1>
-            <p class="page-subtitle">Everything you need to know about Glam Genie</p>
         </div>
 
-        <div class="faq-content">
-            <!-- For Customers -->
-            <div class="faq-category">
-                <h3 class="faq-category-title">
-                    <span>👤</span>
-                    For Customers
-                </h3>
-
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>What is Glam Genie?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Glam Genie is an on-demand beauty platform that connects you with verified makeup artists and beauty professionals who provide services at your home.
-                        </div>
-                    </div>
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page">
+            <div class="secondary-page">
+                <button class="back-btn" id="contactBackBtn">← Back to Home</button>
+                <h1 class="page-title">Contact Us</h1>
+                
+                <div class="contact-form">
+                    <form onsubmit="handleContactSubmit(event)">
+                        <input type="text" placeholder="Your Name" required />
+                        <input type="email" placeholder="Your Email" required />
+                        <input type="text" placeholder="Subject" required />
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit">Send Message</button>
+                    </form>
                 </div>
 
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>How do I book a service?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Simply download our app, browse verified artists, select your desired service, pick a date and time, and confirm your booking. It's that easy!
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>Are the artists verified?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Yes! All artists go through a rigorous verification process. We check credentials, review portfolios, and ensure they meet our quality standards.
-                        </div>
-                    </div>
+                <div style="margin-top: 40px; text-align: center; color: rgba(255, 255, 255, 0.7);">
+                    <p style="margin-bottom: 12px;">📧 Email: hello@glamgenie.in</p>
+                    <p style="margin-bottom: 12px;">📱 WhatsApp: +91 XXXXX XXXXX</p>
+                    <p>🕒 Support Hours: Mon-Sat, 9 AM - 8 PM IST</p>
                 </div>
             </div>
+        </div>
 
-            <!-- For Artists -->
-            <div class="faq-category">
-                <h3 class="faq-category-title">
-                    <span>💄</span>
-                    For Artists
-                </h3>
+        <!-- PRIVACY PAGE -->
+        <div id="privacy" class="page">
+            <div class="secondary-page">
+                <button class="back-btn" id="privacyBackBtn">← Back to Home</button>
+                <h1 class="page-title">Privacy Policy</h1>
+                
+                <div class="privacy-content">
+                    <p><strong>Last Updated:</strong> January 14, 2026</p>
 
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>What's the commission structure?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            We charge ZERO commission! Artists pay a flat monthly/yearly subscription fee and keep 100% of their earnings. No hidden fees, no percentage cuts.
-                        </div>
-                    </div>
-                </div>
+                    <h2>Introduction</h2>
+                    <p>Welcome to Glam Genie. We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.</p>
 
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>How do I join as an artist?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Download our artist app, submit your portfolio, complete verification, and you're ready to start accepting bookings!
-                        </div>
-                    </div>
-                </div>
+                    <h2>Information We Collect</h2>
+                    <h3>Personal Information</h3>
+                    <ul>
+                        <li>Name, email address, and phone number</li>
+                        <li>Location and address details</li>
+                        <li>Payment information (processed securely)</li>
+                        <li>Profile photos and preferences</li>
+                    </ul>
 
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <div class="faq-question-header">
-                        <span>Can I set my own prices?</span>
-                        <span class="faq-question-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Absolutely! You have complete control over your pricing, schedule, and service offerings. Your business, your rules.
-                        </div>
-                    </div>
+                    <h3>Usage Information</h3>
+                    <ul>
+                        <li>Booking history and service preferences</li>
+                        <li>Device information and IP address</li>
+                        <li>App usage patterns and interactions</li>
+                    </ul>
+
+                    <h2>How We Use Your Information</h2>
+                    <p>We use your information to:</p>
+                    <ul>
+                        <li>Facilitate service bookings and payments</li>
+                        <li>Connect you with verified beauty professionals</li>
+                        <li>Improve our services and user experience</li>
+                        <li>Send important updates and notifications</li>
+                        <li>Ensure platform safety and security</li>
+                    </ul>
+
+                    <h2>Data Security</h2>
+                    <p>We implement industry-standard security measures including encryption, secure servers, and regular security audits to protect your personal information from unauthorized access, disclosure, or misuse.</p>
+
+                    <h2>Information Sharing</h2>
+                    <p>We do not sell your personal information. We may share limited information with:</p>
+                    <ul>
+                        <li>Artists you book (name, contact, location for service delivery)</li>
+                        <li>Payment processors (for secure transactions)</li>
+                        <li>Service providers who help operate our platform</li>
+                        <li>Legal authorities when required by law</li>
+                    </ul>
+
+                    <h2>Your Rights</h2>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access and update your personal information</li>
+                        <li>Request deletion of your account and data</li>
+                        <li>Opt-out of marketing communications</li>
+                        <li>Export your data in a portable format</li>
+                    </ul>
+
+                    <h2>Cookies and Tracking</h2>
+                    <p>We use cookies and similar technologies to enhance your experience, analyze usage patterns, and improve our services. You can control cookie settings through your browser.</p>
+
+                    <h2>Children's Privacy</h2>
+                    <p>Our services are intended for users aged 18 and above. We do not knowingly collect information from children under 18.</p>
+
+                    <h2>Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy periodically. We will notify you of significant changes via email or app notification.</p>
+
+                    <h2>Contact Us</h2>
+                    <p>If you have questions or concerns about this Privacy Policy, please contact us at:</p>
+                    <p>Email: privacy@glamgenie.in</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Contact Page -->
-    <div class="page-container contact-page" id="contact">
-        <button class="back-btn" id="contactBackBtn">
-            <span>←</span>
-            <span>Back to Home</span>
-        </button>
-
-        <div class="page-header">
-            <div class="page-icon">✉️</div>
-            <h1 class="page-title">Get in Touch</h1>
-            <p class="page-subtitle">We'd love to hear from you!</p>
-        </div>
-
-        <div class="contact-content">
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h3 style="color: white; margin-bottom: 24px; font-size: 1.3rem;">Send us a Message</h3>
-                <form id="contactFormElement" onsubmit="handleContactSubmit(event)">
-                    <div class="form-group">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-input" placeholder="Your name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-input" placeholder="your@email.com" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Message</label>
-                        <textarea class="form-input form-textarea" placeholder="How can we help you?" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" id="contactSubmitBtn">Send Message</button>
-                </form>
-            </div>
-
-            <!-- Contact Info -->
-            <div>
-                <div class="contact-info-card">
-                    <h4 class="contact-info-title">
-                        <span>📧</span>
-                        Email
-                    </h4>
-                    <div class="contact-info-item">
-                        <div class="contact-info-label">General Inquiries</div>
-                        <div class="contact-info-value">hello@glamgenie.in</div>
-                    </div>
-                    <div class="contact-info-item">
-                        <div class="contact-info-label">Artist Support</div>
-                        <div class="contact-info-value">artists@glamgenie.in</div>
-                    </div>
-                </div>
-
-                <div class="contact-info-card">
-                    <h4 class="contact-info-title">
-                        <span>📍</span>
-                        Location
-                    </h4>
-                    <div class="contact-info-item">
-                        <div class="contact-info-label">Headquarter</div>
-                        <div class="contact-info-value">Bangalore, India</div>
-                    </div>
-                </div>
-
-                <div class="contact-info-card">
-                    <h4 class="contact-info-title">
-                        <span>⏰</span>
-                        Support Hours
-                    </h4>
-                    <div class="contact-info-item">
-                        <div class="contact-info-label">Monday - Saturday</div>
-                        <div class="contact-info-value">9:00 AM - 8:00 PM IST</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Privacy Policy Page -->
-    <div class="page-container privacy-page" id="privacy">
-        <button class="back-btn" id="privacyBackBtn">
-            <span>←</span>
-            <span>Back to Home</span>
-        </button>
-
-        <div class="page-header">
-            <div class="page-icon">🔒</div>
-            <h1 class="page-title">Privacy Policy</h1>
-            <p class="page-subtitle">How we protect and handle your data</p>
-        </div>
-
-        <div class="privacy-content">
-            <div class="privacy-section">
-                <h3 class="privacy-section-title">
-                    <span>📋</span>
-                    Information We Collect
-                </h3>
-                <p class="privacy-text">
-                    We collect information you provide directly to us when you create an account, book services, or communicate with us. This includes:
-                </p>
-                <ul class="privacy-list">
-                    <li>Name, email, and phone number</li>
-                    <li>Location and service preferences</li>
-                    <li>Payment information (processed securely)</li>
-                    <li>Service history and reviews</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h3 class="privacy-section-title">
-                    <span>🛡️</span>
-                    How We Use Your Data
-                </h3>
-                <p class="privacy-text">
-                    Your information helps us provide and improve our services:
-                </p>
-                <ul class="privacy-list">
-                    <li>Process and fulfill your bookings</li>
-                    <li>Send service updates and notifications</li>
-                    <li>Improve platform features and user experience</li>
-                    <li>Ensure safety and prevent fraud</li>
-                </ul>
-            </div>
-
-            <div class="privacy-section">
-                <h3 class="privacy-section-title">
-                    <span>🔐</span>
-                    Data Security
-                </h3>
-                <p class="privacy-text">
-                    We implement industry-standard security measures to protect your personal information. All sensitive data is encrypted both in transit and at rest.
-                </p>
-            </div>
-
-            <div class="privacy-section">
-                <h3 class="privacy-section-title">
-                    <span>📞</span>
-                    Contact Us
-                </h3>
-                <p class="privacy-text">
-                    If you have questions about this Privacy Policy, please contact us at privacy@glamgenie.in
-                </p>
-            </div>
-
-            <p class="privacy-text" style="margin-top: 40px; font-style: italic; opacity: 0.6;">
-                Last updated: January 8, 2026
-            </p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-nav">
-            <button class="footer-nav-link" id="faqNavBtn">
-                <span>❓</span>
-                <span>FAQ</span>
-            </button>
-            <span class="footer-nav-separator">•</span>
-            <button class="footer-nav-link" id="contactNavBtn">
-                <span>✉️</span>
-                <span>Contact</span>
-            </button>
-            <span class="footer-nav-separator">•</span>
-            <button class="footer-nav-link" id="privacyNavBtn">
-                <span>🔒</span>
-                <span>Privacy</span>
-            </button>
-        </div>
-
-        <p class="copyright">
-            © 2026 Glam Genie. All rights reserved.
-        </p>
-
-        <div class="footer-creator">
-            <span class="footer-sparkle">✨</span>
-            <span>Dreamed by</span>
-            <span class="footer-creator-name">Nisha</span>
-            <span class="footer-heart">♥</span>
-        </div>
-
-        <p class="tagline-footer">"Where beauty meets convenience"</p>
-    </footer>
 
     <script>
         // ========================================
-        // GLOBAL NAVIGATION FUNCTIONS (Define FIRST!)
+        // STARS CREATION SCRIPT (runs immediately)
+        // ========================================
+        console.log('⭐ Stars script loading...');
+        
+        const starsContainer = document.getElementById('starsContainer');
+        
+        // Create 130 regular stars
+        for (let i = 0; i < 130; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+            star.style.setProperty('--delay', Math.random() * 2 + 's');
+            starsContainer.appendChild(star);
+        }
+        
+        // Create 20 sparkle stars (larger, brighter)
+        for (let i = 0; i < 20; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 2 + 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', Math.random() * 2 + 1 + 's');
+            star.style.setProperty('--delay', Math.random() * 1 + 's');
+            star.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+            starsContainer.appendChild(star);
+        }
+        
+        // Create shooting stars randomly
+        setInterval(() => {
+            if (Math.random() > 0.5) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.width = Math.random() * 100 + 50 + 'px';
+                shootingStar.style.left = Math.random() * 100 + '%';
+                shootingStar.style.top = Math.random() * 50 + '%';
+                starsContainer.appendChild(shootingStar);
+                
+                setTimeout(() => {
+                    shootingStar.remove();
+                }, 2000);
+            }
+        }, 3000);
+        
+        console.log('✨ Stars created: 150');
+        console.log('🌠 Shooting stars active!');
+
+        // ========================================
+        // NAVIGATION FUNCTIONS (defined globally)
         // ========================================
         console.log('🔧 Defining navigation functions...');
         
-        // Page Navigation
         window.showPage = function(pageId) {
-            console.log('📄 showPage called with pageId:', pageId);
-            
-            // Hide main landing page content
-            const heroSection = document.querySelector('.hero-container');
-            const featuresSection = document.querySelector('.features-section');
-            const servicesSection = document.querySelector('.services-section');
-            const downloadSection = document.querySelector('.download-section');
-            const footer = document.querySelector('.footer');
-            
-            if (heroSection) heroSection.style.display = 'none';
-            if (featuresSection) featuresSection.style.display = 'none';
-            if (servicesSection) servicesSection.style.display = 'none';
-            if (downloadSection) downloadSection.style.display = 'none';
-            if (footer) footer.style.display = 'none';
-            
-            // Hide all page containers
-            const pageContainers = document.querySelectorAll('.page-container');
-            pageContainers.forEach(container => {
-                container.classList.remove('active');
+            console.log('📄 Showing page:', pageId);
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-
-            // Show target page
+            // Show selected page
             const targetPage = document.getElementById(pageId);
-            console.log('🎯 Target page element:', targetPage ? `Found #${pageId}` : `NOT FOUND: #${pageId}`);
-            
             if (targetPage) {
                 targetPage.classList.add('active');
-                console.log('✅ Page activated:', pageId);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo(0, 0);
             } else {
-                console.error('❌ Could not find page with id:', pageId);
+                console.error('❌ Page not found:', pageId);
             }
         };
-
+        
         window.showHome = function() {
-            console.log('🏠 Returning to home');
-            
-            // Show main landing page content
-            const heroSection = document.querySelector('.hero-container');
-            const featuresSection = document.querySelector('.features-section');
-            const servicesSection = document.querySelector('.services-section');
-            const downloadSection = document.querySelector('.download-section');
-            const footer = document.querySelector('.footer');
-            
-            if (heroSection) heroSection.style.display = 'flex';
-            if (featuresSection) featuresSection.style.display = 'block';
-            if (servicesSection) servicesSection.style.display = 'block';
-            if (downloadSection) downloadSection.style.display = 'block';
-            if (footer) footer.style.display = 'block';
-            
-            // Hide all page containers
-            const pageContainers = document.querySelectorAll('.page-container');
-            pageContainers.forEach(container => {
-                container.classList.remove('active');
-            });
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            console.log('🏠 Showing home page');
+            showPage('home');
         };
-
-        // FAQ Toggle
+        
         window.toggleFAQ = function(element) {
-            element.classList.toggle('active');
+            console.log('❓ Toggling FAQ:', element);
+            element.classList.toggle('open');
         };
-
-        // Service Card Toggle
-        window.toggleService = function(element) {
-            element.classList.toggle('active');
+        
+        window.handleContactSubmit = function(event) {
+            event.preventDefault();
+            console.log('📬 Contact form submitted');
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
         };
-
-        // Contact Form Handler
-        window.handleContactSubmit = function(e) {
-            e.preventDefault();
-            const btn = document.getElementById('contactSubmitBtn');
-            const originalText = btn.textContent;
-            const message = document.getElementById('message');
-            
-            btn.disabled = true;
-            btn.textContent = 'Sending...';
-            
-            setTimeout(() => {
-                if (message) {
-                    message.textContent = '✓ Message sent! We\'ll get back to you soon.';
-                    message.className = 'message success show';
-                    setTimeout(() => {
-                        message.classList.remove('show');
-                    }, 5000);
-                }
-                const contactForm = document.getElementById('contactFormElement');
-                if (contactForm) contactForm.reset();
-                btn.disabled = false;
-                btn.textContent = originalText;
-            }, 1500);
-        };
-
+        
         console.log('✅ Navigation functions defined!');
         console.log('✅ Test - showPage is:', typeof window.showPage);
         console.log('✅ Test - showHome is:', typeof window.showHome);
         console.log('✅ Test - toggleFAQ is:', typeof window.toggleFAQ);
         
-        // Test if page elements exist
+        // Check if page elements exist
         setTimeout(() => {
             console.log('🔍 Checking if page elements exist:');
             console.log('  - FAQ page:', !!document.getElementById('faq'));
