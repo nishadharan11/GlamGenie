@@ -285,80 +285,185 @@
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+            border-color: rgba(236, 72, 153, 0.5);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            text-align: center;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f97316, #ec4899);
+            border-radius: 16px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 0 12px 36px rgba(236, 72, 153, 0.6);
+        }
+
+        .feature-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .feature-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-bottom: 12px;
             color: white;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover h3 {
+            background: linear-gradient(135deg, #fbbf24, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .feature-card p {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .feature-card:hover p {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         /* Services Section */
         .services-section {
             padding: 100px 24px;
             background: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
 
-        .services-grid {
+        .services-slider {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            padding-bottom: 20px;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
+            background: #6b21a8; /* Deep purple matching main site */
             border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 28px;
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
             transition: all 0.3s ease;
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            height: 100%;
         }
 
         .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(107, 33, 168, 0.4);
+        }
+
+        .service-image-container {
+            height: 380px; /* Taller for full figure */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top; /* SHOW FACES */
+            transition: transform 0.7s ease;
+        }
+
+        .service-card:hover .service-image-container img {
+            transform: scale(1.05);
+        }
+
+        .service-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #6b21a8 0%, rgba(107, 33, 168, 0.2) 50%, transparent 100%);
+        }
+
+        .service-content {
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: #6b21a8;
+            margin-top: -20px;
         }
 
         .service-card h4 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 8px;
             color: white;
-        }
-
-        .service-price {
-            color: #fbbf24;
-            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
         }
 
         .service-card p {
-            color: rgba(255, 255, 255, 0.65);
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Mobile Slider Optimization */
+        @media (max-width: 768px) {
+            .services-slider {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                grid-template-columns: none;
+                gap: 16px;
+                padding: 10px 24px 40px; /* Padding for scroll and shadow */
+                margin: 0 -24px;
+                width: calc(100% + 48px);
+            }
+            
+            .service-card {
+                min-width: 85vw; /* Show 85% of width */
+                scroll-snap-align: center;
+            }
         }
 
         /* Footer */
@@ -759,32 +864,61 @@
                 <h2 class="section-title">Why Choose Glam Genie?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <div class="feature-icon">🏠</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
                         <h3>Doorstep Service</h3>
                         <p>Professional beauty services delivered to your home across India</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">📸</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
                         <h3>Artist Portfolios</h3>
                         <p>Browse stunning portfolios and choose artists that match your style</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">💰</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
                         <h3>Artists Keep 100%</h3>
                         <p>Zero commission model - artists keep all their earnings</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">⭐</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 6L9 17l-5-5"></path>
+                                <circle cx="12" cy="12" r="10"></circle>
+                            </svg>
+                        </div>
                         <h3>Verified Artists</h3>
                         <p>All artists are background-verified and professionally trained</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </div>
                         <h3>Points & Rewards</h3>
                         <p>Earn points on every booking and redeem for exclusive benefits</p>
                     </div>
                     <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
                         <h3>Safety First</h3>
                         <p>Zero tolerance policy for misbehavior with robust safety measures</p>
                     </div>
@@ -794,42 +928,105 @@
             <!-- Services Section -->
             <section class="services-section">
                 <h2 class="section-title">Our Services</h2>
-                <div class="services-grid">
+                <div class="services-slider">
+                    <!-- Card 1 -->
                     <div class="service-card">
-                        <h4>Bridal Makeup</h4>
-                        <p>Complete bridal look with airbrush makeup and styling</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/Bridal%20beauty%20in%20a%20golden%20glow.png" alt="Bridal Makeup">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Bridal Makeup</h4>
+                            <p>Complete bridal look with airbrush makeup and styling</p>
+                        </div>
                     </div>
+                    <!-- Card 2 -->
                     <div class="service-card">
-                        <h4>Party Makeup</h4>
-                        <p>Glamorous party-ready makeup for any occasion</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/HairMakeup.png" alt="Party Makeup">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Party Makeup</h4>
+                            <p>Glamorous party-ready makeup for any occasion</p>
+                        </div>
                     </div>
+                    <!-- Card 3 -->
                     <div class="service-card">
-                        <h4>Hair Styling</h4>
-                        <p>Professional hair styling, cuts, and treatments</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/Charming%20hairstyling%20session%20in%20saree.png" alt="Hair Styling">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Hair Styling</h4>
+                            <p>Professional hair styling, cuts, and treatments</p>
+                        </div>
                     </div>
+                    <!-- Card 4 -->
                     <div class="service-card">
-                        <h4>Mehendi Design</h4>
-                        <p>Beautiful traditional and modern mehendi designs</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/Mehendi%20artistry%20with%20blue%20tones.png" alt="Mehendi Design">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Mehendi Design</h4>
+                            <p>Beautiful traditional and modern mehendi designs</p>
+                        </div>
                     </div>
+                    <!-- Card 5 -->
                     <div class="service-card">
-                        <h4>Saree Draping</h4>
-                        <p>Expert saree draping in various regional styles</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/SareeDrap.png" alt="Saree Draping">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Saree Draping</h4>
+                            <p>Expert saree draping in various regional styles</p>
+                        </div>
                     </div>
+                    <!-- Card 6 -->
                     <div class="service-card">
-                        <h4>Photoshoot Makeup</h4>
-                        <p>Camera-ready makeup for professional photoshoots</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/partymakeup.png" alt="Photoshoot Makeup">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Photoshoot Makeup</h4>
+                            <p>Camera-ready makeup for professional photoshoots</p>
+                        </div>
                     </div>
+                    <!-- Card 7 -->
                     <div class="service-card">
-                        <h4>Pre-Wedding Shoots</h4>
-                        <p>Special makeup and styling for pre-wedding photoshoots</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/ChatGPT%20Image%20Jan%2025,%202026,%2011_28_37%20AM.png" alt="Pre-Wedding Shoots">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Pre-Wedding Shoots</h4>
+                            <p>Special makeup and styling for pre-wedding photoshoots</p>
+                        </div>
                     </div>
+                    <!-- Card 8 -->
                     <div class="service-card">
-                        <h4>Skin Care Treatment</h4>
-                        <p>Professional facials and skin rejuvenation treatments</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/transparent_image.png" alt="Skin Care Treatment">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Skin Care Treatment</h4>
+                            <p>Professional facials and skin rejuvenation treatments</p>
+                        </div>
                     </div>
+                    <!-- Card 9 -->
                     <div class="service-card">
-                        <h4>Nail Art & Spa</h4>
-                        <p>Creative nail designs and relaxing manicure services</p>
+                        <div class="service-image-container">
+                            <img src="https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Nisha/Cheerful%20spa%20mascot%20in%20purple%20saree.png" alt="Nail Art & Spa">
+                            <div class="service-overlay"></div>
+                        </div>
+                        <div class="service-content">
+                            <h4>Nail Art & Spa</h4>
+                            <p>Creative nail designs and relaxing manicure services</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -848,7 +1045,7 @@
                         <span class="dreamed-by-text">Dreamed by Nisha</span>
                         <span class="heart-icon">💖</span>
                     </div>
-                    <div class="tagline-bottom">Where beauty meets technology</div>
+                    <div class="tagline-bottom">Book your glow, on the Go! ✨</div>
                 </div>
 
                 <p class="copyright">&copy; 2026 Glam Genie. All rights reserved.</p>
